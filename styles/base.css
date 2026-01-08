@@ -1,0 +1,227 @@
+/* ========================================
+   Base Styles
+   Variables, reset, and typography
+   ======================================== */
+
+/* CSS Custom Properties */
+:root {
+    /* Colors */
+    --bg: #ffffff;
+    --bg-subtle: #f8fafc;
+    --bg-muted: #f1f5f9;
+    --text: #1a1a1a;
+    --text-secondary: #475569;
+    --text-tertiary: #64748b;
+    --accent: #2563eb;
+    --accent-light: #dbeafe;
+    --border: #e2e8f0;
+    --border-light: #f1f5f9;
+    
+    /* Region colors (from hippocampus diagrams) */
+    --ec: #059669;
+    --ec-light: #d1fae5;
+    --dg: #7c3aed;
+    --dg-light: #f5f3ff;
+    --ca3: #dc2626;
+    --ca3-light: #fef2f2;
+    --ca1: #2563eb;
+    --ca1-light: #eff6ff;
+    
+    /* Additional semantic colors */
+    --success: #059669;
+    --warning: #d97706;
+    --danger: #dc2626;
+    
+    /* Typography */
+    --font-serif: 'Newsreader', Georgia, serif;
+    --font-mono: 'JetBrains Mono', monospace;
+    
+    /* Spacing */
+    --slide-padding: 4rem 6rem;
+    
+    /* Shadows */
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -4px rgba(0, 0, 0, 0.05);
+    
+    /* Animation */
+    --transition-fast: 0.2s ease;
+    --transition-medium: 0.4s ease;
+    --transition-slow: 0.6s ease;
+    --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Reset and Base */
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    overflow: hidden;
+}
+
+body {
+    font-family: var(--font-serif);
+    background: var(--bg);
+    color: var(--text);
+    font-size: 18px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* ========================================
+   Typography
+   ======================================== */
+
+.section-label {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+    margin-bottom: 1.5rem;
+}
+
+.section-title {
+    font-size: 3.5rem;
+    font-weight: 500;
+    letter-spacing: -0.03em;
+    color: var(--text);
+    margin-bottom: 0.5rem;
+}
+
+.section-subtitle {
+    font-size: 1.25rem;
+    color: var(--text-secondary);
+    font-style: italic;
+}
+
+.slide-subtitle {
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: var(--text-secondary);
+    margin-bottom: 2rem;
+}
+
+h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    color: var(--text);
+}
+
+h4 {
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--text-secondary);
+}
+
+/* ========================================
+   Common Utilities
+   ======================================== */
+
+.two-column {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    margin: 1.5rem 0;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+}
+
+/* ========================================
+   Citations
+   ======================================== */
+
+.citation {
+    background: var(--bg-subtle);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.25rem;
+    margin-bottom: 1.5rem;
+    box-shadow: var(--shadow-sm);
+}
+
+.paper-title {
+    font-weight: 600;
+    font-size: 1rem;
+    margin-bottom: 0.25rem;
+}
+
+.authors {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    font-style: italic;
+}
+
+.detail {
+    font-size: 0.85rem;
+    color: var(--text-tertiary);
+    margin-top: 0.5rem;
+}
+
+.citation-inline {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    font-style: italic;
+}
+
+/* ========================================
+   Key Insights
+   ======================================== */
+
+.key-insight {
+    font-size: 1.1rem;
+    text-align: center;
+    color: var(--text-secondary);
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border);
+}
+
+.key-insight strong {
+    color: var(--text);
+}
+
+/* Citation */
+.citation {
+    font-size: 0.85rem;
+    text-align: center;
+    color: var(--text-tertiary);
+    margin-top: 0.75rem;
+    font-style: normal;
+}
+
+.citation em {
+    font-style: italic;
+}
+
+/* ========================================
+   Responsive adjustments
+   ======================================== */
+
+@media (max-width: 1200px) {
+    :root {
+        --slide-padding: 3rem 4rem;
+    }
+}
+
+@media (max-width: 768px) {
+    :root {
+        --slide-padding: 2rem;
+    }
+    
+    body {
+        font-size: 16px;
+    }
+}

@@ -1,0 +1,66 @@
+<section class="slide" id="slide-7">
+    <div class="slide-content">
+        <h2 class="section-label">Hippocampal DNN Architecture</h2>
+        <p class="complementary-subtitle fade-in">Complementary Learning Systems: Fast hippocampal encoding + Slow neocortical consolidation</p>
+        <div class="dual-pathway">
+            <div class="pathway msp fade-in" style="--delay: 0.5">
+                <div class="pathway-header">
+                    <span class="pathway-name">MSP: Monosynaptic Pathway</span>
+                    <span class="pathway-badge encoding">ENCODING</span>
+                </div>
+                <p class="pathway-desc">Theta Phase 1 — Direct autoencoder baseline (CA3 inhibited)</p>
+                <div class="pathway-flow">
+                    <div class="flow-node ec">EC</div>
+                    <div class="flow-arrow-container">
+                        <span class="flow-arrow">→</span>
+                        <span class="learning-rate slow">slow</span>
+                    </div>
+                    <div class="flow-node ca1">CA1</div>
+                    <div class="flow-arrow-container">
+                        <span class="flow-arrow">→</span>
+                        <span class="learning-rate slow">slow</span>
+                    </div>
+                    <div class="flow-node ec">EC</div>
+                </div>
+            </div>
+            <div class="pathway tsp fade-in" style="--delay: 1">
+                <div class="pathway-header">
+                    <span class="pathway-name">TSP: Trisynaptic Pathway</span>
+                    <span class="pathway-badge recall">RECALL</span>
+                </div>
+                <p class="pathway-desc">Theta Phase 2 — Pattern separation → Association → Completion</p>
+                <div class="pathway-flow">
+                    <div class="flow-node ec">EC</div>
+                    <div class="flow-arrow-container">
+                        <span class="flow-arrow">→</span>
+                    </div>
+                    <div class="flow-node dg">DG</div>
+                    <div class="flow-arrow-container">
+                        <span class="flow-arrow">→</span>
+                        <span class="learning-rate fast">fast</span>
+                    </div>
+                    <div class="flow-node ca3">CA3</div>
+                    <div class="flow-arrow-container">
+                        <span class="flow-arrow">→</span>
+                        <span class="learning-rate fast">fast</span>
+                    </div>
+                    <div class="flow-node ca1">CA1</div>
+                    <div class="flow-arrow-container">
+                        <span class="flow-arrow">→</span>
+                    </div>
+                    <div class="flow-node ec">EC</div>
+                </div>
+            </div>
+        </div>
+        <div class="learning-legend fade-in" style="--delay: 1.5">
+            <div class="legend-item">
+                <span class="legend-marker fast"></span>
+                <span class="legend-text"><strong>Fast learning</strong> — One-shot episodic encoding (sparse → low interference)</span>
+            </div>
+            <div class="legend-item">
+                <span class="legend-marker slow"></span>
+                <span class="legend-text"><strong>Slow learning</strong> — Gradual semantic consolidation (distributed representations)</span>
+            </div>
+        </div>
+    </div>
+</section>

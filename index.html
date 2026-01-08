@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memory, Social Intelligence, and the Path to Aligned AI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Modular CSS -->
+    <link rel="stylesheet" href="styles/base.css?v=25">
+    <link rel="stylesheet" href="styles/slides.css?v=25">
+    <link rel="stylesheet" href="styles/diagrams.css?v=25">
+    <link rel="stylesheet" href="styles/animations.css?v=25">
+</head>
+<body>
+    <div class="presentation">
+        <!-- Progress bar -->
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressFill"></div>
+        </div>
+
+        <!-- Slides will be loaded here -->
+        <div id="slidesContainer">
+            <!-- Loading state -->
+            <section class="slide active" id="slide-loading">
+                <div class="slide-content centered-content">
+                    <p>Loading presentation...</p>
+                </div>
+            </section>
+        </div>
+
+        <!-- Navigation hints -->
+        <div class="nav-hints" id="navHints">
+            <span>← →</span> Navigate
+            <span class="divider">|</span>
+            <span>S</span> Speaker Notes
+        </div>
+
+        <!-- Slide counter -->
+        <div class="slide-counter" id="slideCounter">1 / 18</div>
+    </div>
+
+    <!-- Load slides first, then navigation -->
+    <script src="scripts/slide-loader.js?v=25"></script>
+    <script src="scripts/navigation.js?v=25"></script>
+</body>
+</html>

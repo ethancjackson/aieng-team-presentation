@@ -1,0 +1,219 @@
+/* ========================================
+   SVG Diagrams and Visualizations
+   ======================================== */
+
+/* ========================================
+   Hippocampus Diagram
+   ======================================== */
+
+.hippocampus-diagram {
+    margin: 1.5rem 0;
+}
+
+.hipp-svg {
+    max-height: 300px;
+    width: 100%;
+}
+
+.region-label {
+    font-family: var(--font-mono);
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.region-detail {
+    font-family: var(--font-mono);
+    font-size: 10px;
+}
+
+.arrow-label {
+    font-family: var(--font-serif);
+    font-size: 11px;
+    font-style: italic;
+}
+
+.annotation {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    font-weight: 500;
+}
+
+/* ========================================
+   TD Diagram
+   ======================================== */
+
+.td-diagram {
+    margin: 1rem 0;
+}
+
+.td-svg {
+    max-height: 320px;
+    width: 100%;
+}
+
+.td-svg-full {
+    max-height: 380px;
+    width: 100%;
+}
+
+.td-diagram {
+    margin: 1rem 0;
+}
+
+.layer-label {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 600;
+}
+
+/* TD Legend */
+.td-legend {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    margin: 1rem 0;
+    padding: 0.75rem 1rem;
+    background: var(--bg-subtle);
+    border-radius: 8px;
+    border: 1px solid var(--border);
+}
+
+.legend-entry {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+.delta-marker {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 20px;
+    background: #fff7ed;
+    border: 1.5px solid #ea580c;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 0.8rem;
+    color: #ea580c;
+}
+
+.delta-marker-sm {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 16px;
+    background: #fff7ed;
+    border: 1.5px solid #ea580c;
+    border-radius: 3px;
+    font-weight: 600;
+    font-size: 0.7rem;
+    color: #ea580c;
+}
+
+/* Compact TD Legend */
+.td-legend-compact {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1.25rem;
+    margin: 0.5rem 0;
+    padding: 0.5rem 0.75rem;
+    background: var(--bg-subtle);
+    border-radius: 6px;
+    border: 1px solid var(--border);
+}
+
+.td-legend-compact .legend-entry {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+}
+
+/* Compact key insight */
+.key-insight-compact {
+    font-size: 0.9rem;
+    text-align: center;
+    color: var(--text-secondary);
+    margin-top: 0.5rem;
+    padding-top: 0.4rem;
+    border-top: 1px solid var(--border);
+}
+
+.key-insight-compact strong {
+    color: var(--text);
+}
+
+/* Dense slide (less padding) */
+.dense-slide {
+    padding: 2rem 4rem !important;
+}
+
+.dense-slide .td-diagram {
+    margin: 0.25rem 0;
+}
+
+.dense-slide .td-legend-compact {
+    margin: 0.25rem 0;
+    padding: 0.4rem 0.5rem;
+}
+
+.delta-label {
+    font-family: var(--font-mono);
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.reward-label {
+    font-family: var(--font-mono);
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.broadcast-label {
+    font-family: var(--font-mono);
+    font-size: 9px;
+}
+
+.equation-label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+}
+
+.equation {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.insight-small {
+    font-family: var(--font-mono);
+    font-size: 11px;
+}
+
+.flow-label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+}
+
+/* ========================================
+   SVG Common Styles
+   ======================================== */
+
+svg text {
+    user-select: none;
+}
+
+svg rect {
+    transition: opacity 0.3s ease;
+}
+
+svg path {
+    transition: stroke-opacity 0.3s ease;
+}

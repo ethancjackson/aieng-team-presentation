@@ -1,0 +1,94 @@
+<section class="slide" id="slide-5">
+    <div class="slide-content">
+        <h2 class="section-label">Human Learning & Memory</h2>
+        <div class="hippocampus-diagram fade-in">
+            <svg viewBox="0 0 900 280" class="hipp-svg">
+                <defs>
+                    <marker id="arrow-cortex" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+                        <path d="M0,0 L8,3 L0,6 L2,3 Z" fill="#64748b"/>
+                    </marker>
+                    <marker id="arrow-ec" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+                        <path d="M0,0 L8,3 L0,6 L2,3 Z" fill="#059669"/>
+                    </marker>
+                    <marker id="arrow-dg" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+                        <path d="M0,0 L8,3 L0,6 L2,3 Z" fill="#7c3aed"/>
+                    </marker>
+                    <marker id="arrow-ca3" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+                        <path d="M0,0 L8,3 L0,6 L2,3 Z" fill="#dc2626"/>
+                    </marker>
+                    <marker id="arrow-ca1" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+                        <path d="M0,0 L8,3 L0,6 L2,3 Z" fill="#2563eb"/>
+                    </marker>
+                </defs>
+                
+                <!-- Cortex -->
+                <g transform="translate(50, 100)">
+                    <rect width="120" height="80" rx="8" fill="#f1f5f9" stroke="#64748b" stroke-width="2"/>
+                    <text x="60" y="35" text-anchor="middle" class="region-label" fill="#475569">Cortex</text>
+                    <text x="60" y="55" text-anchor="middle" class="region-detail" fill="#94a3b8">distributed</text>
+                    <text x="60" y="70" text-anchor="middle" class="region-detail" fill="#94a3b8">representations</text>
+                </g>
+                
+                <!-- Arrow to EC -->
+                <path d="M 175 140 L 225 140" stroke="#64748b" stroke-width="2" marker-end="url(#arrow-ec)"/>
+                
+                <!-- EC -->
+                <g transform="translate(235, 100)">
+                    <rect width="120" height="80" rx="8" fill="#d1fae5" stroke="#059669" stroke-width="2"/>
+                    <text x="60" y="30" text-anchor="middle" class="region-label" fill="#059669">EC</text>
+                    <text x="60" y="50" text-anchor="middle" class="region-detail" fill="#059669">Entorhinal</text>
+                    <text x="60" y="65" text-anchor="middle" class="region-detail" fill="#059669">Cortex</text>
+                </g>
+                
+                <!-- Arrow to DG -->
+                <path d="M 360 140 L 410 140" stroke="#059669" stroke-width="2" marker-end="url(#arrow-dg)"/>
+                
+                <!-- DG -->
+                <g transform="translate(420, 100)">
+                    <rect width="100" height="80" rx="8" fill="#f5f3ff" stroke="#7c3aed" stroke-width="2"/>
+                    <text x="50" y="30" text-anchor="middle" class="region-label" fill="#7c3aed">DG</text>
+                    <text x="50" y="50" text-anchor="middle" class="region-detail" fill="#7c3aed">Dentate</text>
+                    <text x="50" y="65" text-anchor="middle" class="region-detail" fill="#7c3aed">Gyrus</text>
+                </g>
+                
+                <!-- Arrow to CA3 -->
+                <path d="M 525 140 L 565 140" stroke="#7c3aed" stroke-width="2" marker-end="url(#arrow-ca3)"/>
+                
+                <!-- CA3 -->
+                <g transform="translate(575, 100)">
+                    <rect width="100" height="80" rx="8" fill="#fef2f2" stroke="#dc2626" stroke-width="2"/>
+                    <text x="50" y="30" text-anchor="middle" class="region-label" fill="#dc2626">CA3</text>
+                    <text x="50" y="50" text-anchor="middle" class="region-detail" fill="#dc2626">Pattern</text>
+                    <text x="50" y="65" text-anchor="middle" class="region-detail" fill="#dc2626">Completion</text>
+                    <!-- Recurrent arrow -->
+                    <path d="M 85 30 C 120 30, 120 60, 85 60" stroke="#dc2626" stroke-width="1.5" fill="none" stroke-dasharray="4,2"/>
+                </g>
+                
+                <!-- Arrow to CA1 -->
+                <path d="M 680 140 L 720 140" stroke="#dc2626" stroke-width="2" marker-end="url(#arrow-ca1)"/>
+                
+                <!-- CA1 -->
+                <g transform="translate(730, 100)">
+                    <rect width="100" height="80" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+                    <text x="50" y="30" text-anchor="middle" class="region-label" fill="#2563eb">CA1</text>
+                    <text x="50" y="50" text-anchor="middle" class="region-detail" fill="#2563eb">Output</text>
+                    <text x="50" y="65" text-anchor="middle" class="region-detail" fill="#2563eb">Encoding</text>
+                </g>
+                
+                <!-- Return path CA1 → EC -->
+                <path d="M 780 185 C 780 230, 295 230, 295 185" stroke="#2563eb" stroke-width="2" fill="none" marker-end="url(#arrow-ec)"/>
+                <text x="540" y="250" text-anchor="middle" class="arrow-label" fill="#64748b">recall pathway</text>
+                
+                <!-- DG annotation -->
+                <g transform="translate(420, 40)">
+                    <rect width="100" height="25" rx="4" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1"/>
+                    <text x="50" y="17" text-anchor="middle" class="annotation" fill="#7c3aed">5% sparse</text>
+                </g>
+            </svg>
+        </div>
+        <p class="key-insight fade-in" style="--delay: 1">
+            The hippocampus balances <strong>pattern separation</strong> (distinct memories) 
+            with <strong>pattern completion</strong> (retrieval from cues)
+        </p>
+    </div>
+</section>

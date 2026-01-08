@@ -1,0 +1,178 @@
+/* ========================================
+   Animations and Transitions
+   ======================================== */
+
+/* ========================================
+   Fade In Animation
+   ======================================== */
+
+.fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s var(--ease-out-expo), transform 0.6s var(--ease-out-expo);
+    transition-delay: calc(var(--delay, 0) * 0.15s);
+}
+
+.slide.active .fade-in {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ========================================
+   Staggered Timeline Animation
+   ======================================== */
+
+.slide.active .timeline-item {
+    animation: slideUp 0.5s var(--ease-out-expo) forwards;
+    animation-delay: calc(var(--delay) * 0.1s);
+    opacity: 0;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ========================================
+   Score Bar Animation
+   ======================================== */
+
+.slide.active .score-fill {
+    animation: fillBar 1s var(--ease-out-expo) forwards;
+    animation-delay: 0.3s;
+    width: 0;
+}
+
+@keyframes fillBar {
+    to {
+        width: var(--score);
+    }
+}
+
+/* ========================================
+   Pulse Animation (for emphasis)
+   ======================================== */
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.7;
+    }
+}
+
+.pulse {
+    animation: pulse 2s ease-in-out infinite;
+}
+
+/* ========================================
+   Slide Transition
+   ======================================== */
+
+.slide {
+    transition: opacity 0.5s var(--ease-out-expo), 
+                visibility 0.5s var(--ease-out-expo);
+}
+
+/* ========================================
+   Card Hover Effects
+   ======================================== */
+
+.timeline-card,
+.pattern-card,
+.finding-item,
+.vision-pillar {
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.pattern-card:hover,
+.finding-item:hover {
+    box-shadow: var(--shadow-md);
+}
+
+/* ========================================
+   Progress Bar Animation
+   ======================================== */
+
+.progress-fill {
+    transition: width 0.4s var(--ease-out-expo);
+}
+
+/* ========================================
+   Section Transition Slides
+   ======================================== */
+
+/* Subtle background animation for transition slides */
+.centered-content.section-transition {
+    position: relative;
+}
+
+.centered-content.section-transition::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, var(--accent-light) 0%, transparent 70%);
+    transform: translate(-50%, -50%);
+    opacity: 0.5;
+    z-index: -1;
+    animation: breathe 4s ease-in-out infinite;
+}
+
+@keyframes breathe {
+    0%, 100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0.3;
+    }
+    50% {
+        transform: translate(-50%, -50%) scale(1.1);
+        opacity: 0.5;
+    }
+}
+
+/* ========================================
+   Focus States for Accessibility
+   ======================================== */
+
+:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+}
+
+/* ========================================
+   Reduced Motion
+   ======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+    
+    .fade-in {
+        opacity: 1;
+        transform: none;
+    }
+    
+    .slide.active .timeline-item {
+        animation: none;
+        opacity: 1;
+    }
+    
+    .slide.active .score-fill {
+        animation: none;
+        width: var(--score);
+    }
+}

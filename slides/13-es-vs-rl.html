@@ -1,0 +1,68 @@
+<section class="slide" id="slide-13">
+    <div class="slide-content">
+        <h2 class="section-label">Evolution Strategies vs Reinforcement Learning</h2>
+        <p class="slide-subtitle">ES scales to billions of parameters by exploring in parameter space, not action space</p>
+        
+        <div class="two-column comparison-columns fade-in">
+            <div class="column es-column">
+                <h3>Evolution Strategies (ES)</h3>
+                <p class="explore-type">Explore in <strong>parameter space</strong></p>
+                <div class="method-visual es-visual">
+                    <div class="population-grid-extended">
+                        <div class="agent fitness-high" title="High fitness">θ₁</div>
+                        <div class="agent fitness-mid" title="Medium fitness">θ₂</div>
+                        <div class="agent fitness-best" title="Best fitness">θ₃</div>
+                        <div class="agent fitness-low" title="Low fitness">θ₄</div>
+                        <div class="agent fitness-mid" title="Medium fitness">θ₅</div>
+                        <div class="agent ellipsis">···</div>
+                        <div class="agent fitness-mid" title="Medium fitness">θ₃₀</div>
+                    </div>
+                    <p class="visual-label">Population N=30 (fitness-colored)</p>
+                    <div class="seed-trajectory">
+                        <div class="trajectory-label">θ = θ₀ + σ·(ε₁ + ε₂ + ··· + εₜ)</div>
+                        <div class="trajectory-desc">Seeds → Gaussian noise trajectory</div>
+                    </div>
+                </div>
+                <ul class="advantages">
+                    <li>One noise sample per trajectory</li>
+                    <li>No backpropagation (inference only)</li>
+                    <li>Low variance, stable optimization</li>
+                    <li><strong>No reward hacking</strong> observed</li>
+                </ul>
+                <div class="key-trick">
+                    <strong>Key trick:</strong> Store seeds, not tensors — Memory: O(generations) vs O(7B params)
+                </div>
+            </div>
+            <div class="column rl-column" style="--delay: 0.5">
+                <h3>Reinforcement Learning (PPO/GRPO)</h3>
+                <p class="explore-type">Explore in <strong>action space</strong></p>
+                <div class="method-visual">
+                    <div class="token-sequence">
+                        <span class="token">The</span>
+                        <span class="noise">↯</span>
+                        <span class="token">answer</span>
+                        <span class="noise">↯</span>
+                        <span class="token">is</span>
+                        <span class="noise">↯</span>
+                        <span class="token">42</span>
+                        <span class="noise">↯</span>
+                    </div>
+                    <p class="visual-label">Noise at every token</p>
+                </div>
+                <ul class="challenges">
+                    <li>Noise at every step → high variance</li>
+                    <li>Requires backpropagation</li>
+                    <li>Credit assignment across 100s of tokens</li>
+                    <li>Prone to reward hacking (needs KL penalty)</li>
+                </ul>
+                <div class="empirical-result">
+                    <strong>Empirical:</strong> 15.5× higher std across runs
+                </div>
+            </div>
+        </div>
+        
+        <p class="citation-inline fade-in" style="--delay: 1">
+            Qiu, Gan, Hayes, Liang, Meyerson, Hodjat & Miikkulainen — "Evolution Strategies at Scale: LLM Finetuning Beyond RL" (2025)
+        </p>
+    </div>
+</section>

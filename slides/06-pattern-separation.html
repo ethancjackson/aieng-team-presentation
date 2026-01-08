@@ -1,0 +1,103 @@
+<section class="slide" id="slide-6">
+    <div class="slide-content">
+        <h2 class="section-label">Pattern Separation & Completion</h2>
+        <div class="two-column pattern-columns">
+            <!-- Pattern Separation Card -->
+            <div class="column pattern-card separation fade-in">
+                <h3>Pattern Separation</h3>
+                <p class="region-tag">Dentate Gyrus</p>
+                <div class="pattern-visual separation-visual">
+                    <!-- Two similar inputs on the left -->
+                    <div class="separation-inputs">
+                        <div class="input-row">
+                            <span class="input-label">A</span>
+                            <div class="pattern-dots">
+                                <div class="dot filled"></div>
+                                <div class="dot filled"></div>
+                                <div class="dot"></div>
+                                <div class="dot filled"></div>
+                            </div>
+                        </div>
+                        <div class="similarity-brace"></div>
+                        <div class="input-row">
+                            <span class="input-label">B</span>
+                            <div class="pattern-dots">
+                                <div class="dot filled"></div>
+                                <div class="dot filled"></div>
+                                <div class="dot filled"></div>
+                                <div class="dot"></div>
+                            </div>
+                        </div>
+                        <span class="brace-label">similar</span>
+                    </div>
+                    
+                    <div class="transform-arrow-large">→</div>
+                    
+                    <!-- Two orthogonal outputs on the right -->
+                    <div class="separation-outputs">
+                        <div class="output-row">
+                            <div class="sparse-grid-sm">
+                                <div class="dot-sm"></div><div class="dot-sm"></div><div class="dot-sm filled"></div>
+                                <div class="dot-sm"></div><div class="dot-sm"></div><div class="dot-sm"></div>
+                                <div class="dot-sm"></div><div class="dot-sm"></div><div class="dot-sm"></div>
+                            </div>
+                        </div>
+                        <div class="orthogonal-brace"></div>
+                        <div class="output-row">
+                            <div class="sparse-grid-sm">
+                                <div class="dot-sm"></div><div class="dot-sm"></div><div class="dot-sm"></div>
+                                <div class="dot-sm"></div><div class="dot-sm filled"></div><div class="dot-sm"></div>
+                                <div class="dot-sm"></div><div class="dot-sm"></div><div class="dot-sm"></div>
+                            </div>
+                        </div>
+                        <span class="brace-label">orthogonal</span>
+                    </div>
+                </div>
+                <ul>
+                    <li>Similar inputs → distinct sparse codes</li>
+                    <li>Prevents memory interference</li>
+                    <li>Only ~5% of neurons active</li>
+                </ul>
+            </div>
+            
+            <!-- Pattern Completion Card -->
+            <div class="column pattern-card completion fade-in" style="--delay: 1">
+                <h3>Pattern Completion</h3>
+                <p class="region-tag">CA3</p>
+                <div class="pattern-visual completion-visual">
+                    <!-- Partial input -->
+                    <div class="completion-side">
+                        <div class="completion-grid">
+                            <div class="dot filled"></div>
+                            <div class="dot faded"></div>
+                            <div class="dot faded"></div>
+                            <div class="dot filled"></div>
+                        </div>
+                        <span class="completion-label">partial cue</span>
+                    </div>
+                    
+                    <div class="transform-arrow-large">→</div>
+                    
+                    <!-- Complete output -->
+                    <div class="completion-side">
+                        <div class="completion-grid">
+                            <div class="dot filled"></div>
+                            <div class="dot filled"></div>
+                            <div class="dot"></div>
+                            <div class="dot filled"></div>
+                        </div>
+                        <span class="completion-label">full memory</span>
+                    </div>
+                </div>
+                <ul>
+                    <li>Partial cue → full memory recall</li>
+                    <li>Dense recurrent connections</li>
+                    <li>Associative retrieval</li>
+                </ul>
+            </div>
+        </div>
+        <p class="tradeoff fade-in" style="--delay: 2">
+            <strong>The tradeoff:</strong> Too much separation → can't generalize. Too much completion → memories blur.
+        </p>
+    </div>
+</section>

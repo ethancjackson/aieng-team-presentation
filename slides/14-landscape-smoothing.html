@@ -1,0 +1,83 @@
+<section class="slide" id="slide-14">
+    <div class="slide-content">
+        <h2 class="section-label">From Game Agents to LLM Fine-Tuning</h2>
+        <p class="slide-subtitle">The same evolutionary principles scale from millions to billions of parameters</p>
+        
+        <div class="evolution-timeline-large fade-in">
+            <div class="timeline-era-large past">
+                <div class="era-header-large">
+                    <span class="era-date">2017–2019</span>
+                    <span class="era-label">Game Agents</span>
+                </div>
+                <div class="era-content-large">
+                    <div class="era-icon-large">🎮</div>
+                    <p class="era-title"><strong>Atari DQN</strong> via GA</p>
+                    <p class="era-stats">~1M params, N=10,000+</p>
+                    <p class="era-cite">Such et al. (2017)</p>
+                    <p class="era-cite">→ Extended: Jackson (2019)</p>
+                </div>
+            </div>
+            <div class="timeline-arrow-large">→</div>
+            <div class="timeline-era-large present">
+                <div class="era-header-large">
+                    <span class="era-date">2025</span>
+                    <span class="era-label">LLM Fine-Tuning</span>
+                </div>
+                <div class="era-content-large">
+                    <div class="era-icon-large">🧠</div>
+                    <p class="era-title"><strong>Qwen/Llama 7B</strong> via ES</p>
+                    <p class="era-stats">~7B params, <strong>N=30</strong> (!)</p>
+                    <p class="era-cite">Qiu et al. (2025)</p>
+                </div>
+            </div>
+            <div class="timeline-arrow-large">→</div>
+            <div class="timeline-era-large future">
+                <div class="era-header-large">
+                    <span class="era-date">Future</span>
+                    <span class="era-label">Agentic Systems?</span>
+                </div>
+                <div class="era-content-large">
+                    <div class="era-icon-large">🤖</div>
+                    <p class="era-title"><strong>Full agent</strong> optimization</p>
+                    <p class="era-stats">Architecture + weights + prompts</p>
+                    <p class="era-cite">Open research direction</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="two-column insight-columns fade-in" style="--delay: 0.5">
+            <div class="column insight-card-large">
+                <h4>🔬 Why Does N=30 Work?</h4>
+                <div class="insight-visual-large">
+                    <svg viewBox="0 0 200 60" class="intrinsic-dim-svg">
+                        <rect x="10" y="5" width="70" height="50" rx="5" fill="#f3f4f6" stroke="#d1d5db" stroke-width="1.5"/>
+                        <text x="45" y="27" text-anchor="middle" font-size="10" fill="#6b7280">7B params</text>
+                        <text x="45" y="42" text-anchor="middle" font-size="8" fill="#9ca3af">(apparent)</text>
+                        <path d="M 85 30 L 115 30" stroke="#6b7280" stroke-width="2" marker-end="url(#arrow-gray)"/>
+                        <ellipse cx="155" cy="30" rx="35" ry="22" fill="#dcfce7" stroke="#10b981" stroke-width="2"/>
+                        <text x="155" y="27" text-anchor="middle" font-size="10" font-weight="500" fill="#166534">Intrinsic</text>
+                        <text x="155" y="40" text-anchor="middle" font-size="9" fill="#166534">~1000 dims</text>
+                    </svg>
+                </div>
+                <p class="insight-text-large"><strong>Low intrinsic dimensionality</strong> — LLMs' effective parameter space is much smaller than nominal. Consistent with LoRA.</p>
+            </div>
+            <div class="column insight-card-large">
+                <h4>🌊 Landscape Smoothing</h4>
+                <div class="insight-visual-large">
+                    <svg viewBox="0 0 200 60" class="landscape-svg">
+                        <path d="M 10 45 Q 30 15, 50 40 T 90 20" fill="none" stroke="#ef4444" stroke-width="2" opacity="0.6"/>
+                        <text x="50" y="55" text-anchor="middle" font-size="9" fill="#ef4444">RL (raw)</text>
+                        <path d="M 110 42 Q 140 28, 170 22 T 195 30" fill="none" stroke="#10b981" stroke-width="2.5"/>
+                        <circle cx="170" cy="22" r="4" fill="#10b981"/>
+                        <text x="155" y="55" text-anchor="middle" font-size="9" fill="#10b981">ES (smoothed)</text>
+                    </svg>
+                </div>
+                <p class="insight-text-large"><strong>Gaussian convolution</strong> — Population averaging smooths loss surface, enabling stable optimization.</p>
+            </div>
+        </div>
+        
+        <div class="key-insight fade-in" style="--delay: 1">
+            <strong>Implication:</strong> Evolutionary methods may unlock optimization for agentic systems that gradient-based RL cannot — architecture search, prompt evolution, multi-component agents.
+        </div>
+    </div>
+</section>

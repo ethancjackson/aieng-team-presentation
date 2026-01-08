@@ -1,0 +1,100 @@
+<section class="slide" id="slide-9">
+    <div class="slide-content dense-slide">
+        <h2 class="section-label">Engineering Episodic Memory for Agents</h2>
+        
+        <p class="slide-intro fade-in">
+            We don't need hippocampal DNN modules to give agents episodic memory. 
+            <strong>RAG-based architectures</strong> offer practical engineering solutions — 
+            with parallels to biological complementary learning systems.
+        </p>
+        
+        <div class="pipeline-architecture fade-in" style="--delay: 0.3">
+            <!-- Memory Retrieval Pipeline -->
+            <div class="pipeline retrieval">
+                <div class="pipeline-header">
+                    <span class="pipeline-title">Memory Retrieval Pipeline</span>
+                    <span class="pipeline-badge fast">FAST RECALL</span>
+                </div>
+                <div class="pipeline-flow">
+                    <div class="pipeline-node dialog">
+                        <span class="node-icon">💬</span>
+                        <span class="node-label">Dialog</span>
+                    </div>
+                    <span class="flow-arrow">→</span>
+                    <div class="pipeline-node llm">
+                        <span class="node-tag">LLM</span>
+                        <span class="node-label">Query<br>Extraction</span>
+                    </div>
+                    <span class="flow-arrow">→</span>
+                    <div class="pipeline-node embed">
+                        <span class="node-tag">EMBED</span>
+                        <span class="node-label">Vectorize</span>
+                    </div>
+                    <span class="flow-arrow">→</span>
+                    <div class="pipeline-node search">
+                        <span class="node-tag">SEARCH</span>
+                        <span class="node-label">pgvector</span>
+                    </div>
+                    <span class="flow-arrow">→</span>
+                    <div class="pipeline-node memories">
+                        <span class="node-icon">📋</span>
+                        <span class="node-label">Top-K<br>Memories</span>
+                    </div>
+                    <span class="flow-arrow">→</span>
+                    <div class="pipeline-node response">
+                        <span class="node-tag">LLM</span>
+                        <span class="node-label">Response</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Memory Consolidation Pipeline -->
+            <div class="pipeline consolidation">
+                <div class="pipeline-header">
+                    <span class="pipeline-title">Memory Consolidation Pipeline</span>
+                    <span class="pipeline-badge slow">SLOW LEARNING</span>
+                </div>
+                <div class="pipeline-flow">
+                    <div class="pipeline-node inputs">
+                        <span class="node-icon">📥</span>
+                        <span class="node-label">Inputs</span>
+                    </div>
+                    <span class="flow-arrow">→</span>
+                    <div class="pipeline-node llm">
+                        <span class="node-tag">LLM</span>
+                        <span class="node-label">Analyze<br>& Decide</span>
+                    </div>
+                    <span class="flow-arrow">→</span>
+                    <div class="pipeline-node ops">
+                        <div class="ops-badges">
+                            <span class="op-badge insert">INSERT</span>
+                            <span class="op-badge update">UPDATE</span>
+                            <span class="op-badge delete">DELETE</span>
+                        </div>
+                    </div>
+                    <span class="flow-arrow">→</span>
+                    <div class="pipeline-node embed">
+                        <span class="node-tag">EMBED</span>
+                        <span class="node-label">Vectorize</span>
+                    </div>
+                    <span class="flow-arrow">→</span>
+                    <div class="pipeline-node db">
+                        <span class="node-tag">DB</span>
+                        <span class="node-label">PostgreSQL</span>
+                        <span class="node-detail">HNSW indexed</span>
+                    </div>
+                    <span class="checkmark">✓</span>
+                </div>
+            </div>
+        </div>
+        
+        <p class="architecture-note fade-in" style="--delay: 0.6">
+            Two distinct phases mirror biological memory: <strong>retrieval</strong> (pattern completion) 
+            and <strong>consolidation</strong> (post-interaction learning).
+        </p>
+        
+        <p class="provocative-question fade-in" style="--delay: 1">
+            What would AGI benchmarks look like for a <strong>memory-enabled agent</strong>?
+        </p>
+    </div>
+</section>

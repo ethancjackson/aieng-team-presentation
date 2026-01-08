@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Episodic Memory System — Architecture</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=JetBrains+Mono:wght@400;500;600&display=swap');
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        :root {
+            --bg: #fafaf8;
+            --surface: #ffffff;
+            --border: #e5e5e0;
+            --text: #1a1a18;
+            --text-secondary: #5c5c58;
+            --text-tertiary: #8c8c88;
+            
+            --llm: #7c3aed;
+            --llm-light: #ede9fe;
+            --embed: #0284c7;
+            --embed-light: #e0f2fe;
+            --db: #059669;
+            --db-light: #d1fae5;
+            --data: #1d4ed8;
+            --data-light: #dbeafe;
+            --ops: #c2410c;
+            --ops-light: #ffedd5;
+            --consolidate: #be185d;
+            --consolidate-light: #fce7f3;
+        }
+        
+        body {
+            font-family: 'Newsreader', Georgia, serif;
+            background: var(--bg);
+            color: var(--text);
+            padding: 2rem 2.5rem;
+            min-height: 100vh;
+        }
+        
+        .page {
+            max-width: 1080px;
+            margin: 0 auto;
+        }
+        
+        /* Header */
+        header {
+            text-align: center;
+            margin-bottom: 1.75rem;
+        }
+        
+        h1 {
+            font-size: 1.65rem;
+            font-weight: 500;
+            letter-spacing: -0.03em;
+            margin-bottom: 0.35rem;
+        }
+        
+        h1 span {
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 600;
+            background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .subtitle {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            font-style: italic;
+        }
+        
+        /* Section panels */
+        .section {
+            background: var(--surface);
+            border-radius: 10px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.06);
+            margin-bottom: 1.25rem;
+            overflow: hidden;
+        }
+        
+        .section-header {
+            padding: 0.65rem 1.25rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .section-header.retrieval {
+            background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+            border-bottom: 2px solid var(--data);
+        }
+        
+        .section-header.consolidation {
+            background: linear-gradient(135deg, #fdf2f8 0%, #fce7f3 100%);
+            border-bottom: 2px solid var(--consolidate);
+        }
+        
+        .section-header h2 {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.01em;
+        }
+        
+        .section-header.retrieval h2 { color: #1e40af; }
+        .section-header.consolidation h2 { color: var(--consolidate); }
+        
+        .section-header .badge {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.55rem;
+            font-weight: 600;
+            padding: 0.2rem 0.5rem;
+            border-radius: 3px;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+        
+        .section-header.retrieval .badge {
+            background: var(--data);
+            color: white;
+        }
+        
+        .section-header.consolidation .badge {
+            background: var(--consolidate);
+            color: white;
+        }
+        
+        .section-content {
+            padding: 1.25rem 1rem;
+        }
+        
+        /* SVG styles */
+        svg { width: 100%; height: auto; display: block; }
+        
+        .node-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 600;
+        }
+        
+        .node-sublabel {
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 400;
+        }
+        
+        .badge-text {
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 600;
+            letter-spacing: 0.03em;
+        }
+        
+        .arrow-text {
+            font-family: 'Newsreader', Georgia, serif;
+            font-style: italic;
+        }
+        
+        /* Bottom grid */
+        .bottom-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+        
+        .info-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 0.85rem 1rem;
+        }
+        
+        .info-card h3 {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+        
+        .info-card.schema h3 { color: var(--data); }
+        .info-card.rules h3 { color: var(--consolidate); }
+        
+        .info-card p {
+            font-size: 0.78rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+            margin-bottom: 0.4rem;
+        }
+        
+        .info-card ul {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            padding-left: 1.1rem;
+        }
+        
+        .info-card code {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.68rem;
+            background: #f4f4f2;
+            padding: 0.1em 0.3em;
+            border-radius: 3px;
+            color: var(--text);
+        }
+        
+        /* Legend */
+        .legend {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 1rem;
+            padding: 0.6rem 1rem;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.7rem;
+            color: var(--text-secondary);
+        }
+        
+        .legend-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 3px;
+            border: 2px solid;
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <header>
+            <h1><span>Episodic Memory</span> System Architecture</h1>
+            <p class="subtitle">Query Processing → Vector Retrieval → Memory-Augmented Response</p>
+        </header>
+        
+        <!-- RETRIEVAL PIPELINE -->
+        <div class="section">
+            <div class="section-header retrieval">
+                <h2>Memory Retrieval Pipeline</h2>
+                <span class="badge">Query → Response</span>
+            </div>
+            <div class="section-content">
+                <svg viewBox="0 0 1000 130">
+                    <defs>
+                        <marker id="arr-llm" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+                            <path d="M0,0 L8,3 L0,6 L2,3 Z" fill="#7c3aed"/>
+                        </marker>
+                        <marker id="arr-embed" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+                            <path d="M0,0 L8,3 L0,6 L2,3 Z" fill="#0284c7"/>
+                        </marker>
+                        <marker id="arr-db" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+                            <path d="M0,0 L8,3 L0,6 L2,3 Z" fill="#059669"/>
+                        </marker>
+                        <marker id="arr-gray" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+                            <path d="M0,0 L8,3 L0,6 L2,3 Z" fill="#9ca3af"/>
+                        </marker>
+                    </defs>
+                    
+                    <!-- Node 1: Dialog Input -->
+                    <g transform="translate(0, 15)">
+                        <rect width="100" height="100" rx="8" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5"/>
+                        <text class="node-label" x="50" y="38" text-anchor="middle" font-size="13" fill="#475569">💬 Dialog</text>
+                        <text class="node-sublabel" x="50" y="56" text-anchor="middle" font-size="9" fill="#64748b">User query</text>
+                        <text class="node-sublabel" x="50" y="70" text-anchor="middle" font-size="9" fill="#64748b">or observation</text>
+                    </g>
+                    
+                    <!-- Arrow 1 -->
+                    <path d="M 108 65 L 148 65" stroke="#7c3aed" stroke-width="2" marker-end="url(#arr-llm)"/>
+                    
+                    <!-- Node 2: LLM - Dialog to Queries -->
+                    <g transform="translate(158, 10)">
+                        <rect width="120" height="110" rx="8" fill="#ede9fe" stroke="#7c3aed" stroke-width="2"/>
+                        <rect width="120" height="22" rx="8" fill="#7c3aed"/>
+                        <rect y="14" width="120" height="8" fill="#7c3aed"/>
+                        <text class="badge-text" x="60" y="15" text-anchor="middle" font-size="8" fill="white">🤖 LLM</text>
+                        <text class="node-label" x="60" y="50" text-anchor="middle" font-size="12" fill="#5b21b6">Dialog →</text>
+                        <text class="node-label" x="60" y="66" text-anchor="middle" font-size="12" fill="#5b21b6">Queries</text>
+                        <text class="node-sublabel" x="60" y="88" text-anchor="middle" font-size="9" fill="#7c3aed">1-3 keywords</text>
+                    </g>
+                    
+                    <!-- Arrow 2 -->
+                    <path d="M 286 65 L 326 65" stroke="#0284c7" stroke-width="2" marker-end="url(#arr-embed)"/>
+                    
+                    <!-- Node 3: Embedding -->
+                    <g transform="translate(336, 10)">
+                        <rect width="120" height="110" rx="8" fill="#e0f2fe" stroke="#0284c7" stroke-width="2"/>
+                        <rect width="120" height="22" rx="8" fill="#0284c7"/>
+                        <rect y="14" width="120" height="8" fill="#0284c7"/>
+                        <text class="badge-text" x="60" y="15" text-anchor="middle" font-size="8" fill="white">📐 EMBED</text>
+                        <text class="node-label" x="60" y="50" text-anchor="middle" font-size="12" fill="#0369a1">OpenAI</text>
+                        <text class="node-sublabel" x="60" y="68" text-anchor="middle" font-size="9" fill="#0284c7">text-embedding</text>
+                        <text class="node-sublabel" x="60" y="82" text-anchor="middle" font-size="9" fill="#0284c7">-3-small</text>
+                        <rect x="20" y="90" width="80" height="14" rx="4" fill="#bae6fd"/>
+                        <text class="node-sublabel" x="60" y="100" text-anchor="middle" font-size="8" fill="#0369a1">1536-dim</text>
+                    </g>
+                    
+                    <!-- Arrow 3 -->
+                    <path d="M 464 65 L 504 65" stroke="#059669" stroke-width="2" marker-end="url(#arr-db)"/>
+                    
+                    <!-- Node 4: Vector Search -->
+                    <g transform="translate(514, 10)">
+                        <rect width="130" height="110" rx="8" fill="#d1fae5" stroke="#059669" stroke-width="2"/>
+                        <rect width="130" height="22" rx="8" fill="#059669"/>
+                        <rect y="14" width="130" height="8" fill="#059669"/>
+                        <text class="badge-text" x="65" y="15" text-anchor="middle" font-size="8" fill="white">🗄️ SEARCH</text>
+                        <text class="node-label" x="65" y="50" text-anchor="middle" font-size="12" fill="#047857">pgvector</text>
+                        <text class="node-sublabel" x="65" y="68" text-anchor="middle" font-size="9" fill="#059669">HNSW index</text>
+                        <text class="node-sublabel" x="65" y="82" text-anchor="middle" font-size="9" fill="#059669">cosine similarity</text>
+                        <rect x="15" y="90" width="100" height="14" rx="4" fill="#a7f3d0"/>
+                        <text class="node-sublabel" x="65" y="100" text-anchor="middle" font-size="8" fill="#047857">key_embedding ⇔</text>
+                    </g>
+                    
+                    <!-- Arrow 4 -->
+                    <path d="M 652 65 L 692 65" stroke="#9ca3af" stroke-width="2" marker-end="url(#arr-gray)"/>
+                    <text class="arrow-text" x="672" y="55" text-anchor="middle" font-size="9" fill="#6b7280">Top-K</text>
+                    
+                    <!-- Node 5: Retrieved Memories -->
+                    <g transform="translate(702, 10)">
+                        <rect width="130" height="110" rx="8" fill="#dbeafe" stroke="#1d4ed8" stroke-width="2"/>
+                        <text class="node-label" x="65" y="30" text-anchor="middle" font-size="12" fill="#1e40af">📋 Memories</text>
+                        <text class="node-sublabel" x="65" y="48" text-anchor="middle" font-size="9" fill="#2563eb">EpisodicMemory[]</text>
+                        <line x1="15" y1="56" x2="115" y2="56" stroke="#93c5fd" stroke-width="1"/>
+                        <text class="node-sublabel" x="65" y="72" text-anchor="middle" font-size="8" fill="#1d4ed8">• keys[], content</text>
+                        <text class="node-sublabel" x="65" y="86" text-anchor="middle" font-size="8" fill="#1d4ed8">• valence [-1, +1]</text>
+                        <text class="node-sublabel" x="65" y="100" text-anchor="middle" font-size="8" fill="#1d4ed8">• similarity score</text>
+                    </g>
+                    
+                    <!-- Arrow 5 -->
+                    <path d="M 840 65 L 880 65" stroke="#7c3aed" stroke-width="2" marker-end="url(#arr-llm)"/>
+                    <text class="arrow-text" x="860" y="55" text-anchor="middle" font-size="9" fill="#6b7280">context</text>
+                    
+                    <!-- Node 6: Agent Response -->
+                    <g transform="translate(890, 10)">
+                        <rect width="105" height="110" rx="8" fill="#ede9fe" stroke="#7c3aed" stroke-width="2"/>
+                        <rect width="105" height="22" rx="8" fill="#7c3aed"/>
+                        <rect y="14" width="105" height="8" fill="#7c3aed"/>
+                        <text class="badge-text" x="52" y="15" text-anchor="middle" font-size="8" fill="white">🤖 LLM</text>
+                        <text class="node-label" x="52" y="50" text-anchor="middle" font-size="12" fill="#5b21b6">Agent</text>
+                        <text class="node-label" x="52" y="66" text-anchor="middle" font-size="12" fill="#5b21b6">Response</text>
+                        <text class="node-sublabel" x="52" y="88" text-anchor="middle" font-size="9" fill="#7c3aed">memory-</text>
+                        <text class="node-sublabel" x="52" y="100" text-anchor="middle" font-size="9" fill="#7c3aed">augmented</text>
+                    </g>
+                </svg>
+            </div>
+        </div>
+        
+        <!-- CONSOLIDATION PIPELINE -->
+        <div class="section">
+            <div class="section-header consolidation">
+                <h2>Memory Consolidation Pipeline</h2>
+                <span class="badge">Post-Interaction</span>
+            </div>
+            <div class="section-content">
+                <svg viewBox="0 0 1000 105">
+                    <defs>
+                        <marker id="arr-pink" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+                            <path d="M0,0 L8,3 L0,6 L2,3 Z" fill="#be185d"/>
+                        </marker>
+                    </defs>
+                    
+                    <!-- Node 1: Inputs -->
+                    <g transform="translate(0, 5)">
+                        <rect width="130" height="90" rx="8" fill="#fce7f3" stroke="#be185d" stroke-width="1.5"/>
+                        <text class="node-label" x="65" y="26" text-anchor="middle" font-size="11" fill="#9d174d">📥 Inputs</text>
+                        <text class="node-sublabel" x="65" y="46" text-anchor="middle" font-size="8" fill="#be185d">• formatted_dialog</text>
+                        <text class="node-sublabel" x="65" y="60" text-anchor="middle" font-size="8" fill="#be185d">• retrieved_memories</text>
+                        <text class="node-sublabel" x="65" y="74" text-anchor="middle" font-size="8" fill="#be185d">• memory_task</text>
+                    </g>
+                    
+                    <!-- Arrow -->
+                    <path d="M 138 50 L 178 50" stroke="#be185d" stroke-width="2" marker-end="url(#arr-pink)"/>
+                    
+                    <!-- Node 2: LLM Consolidation -->
+                    <g transform="translate(188, 0)">
+                        <rect width="145" height="100" rx="8" fill="#ede9fe" stroke="#7c3aed" stroke-width="2"/>
+                        <rect width="145" height="22" rx="8" fill="#7c3aed"/>
+                        <rect y="14" width="145" height="8" fill="#7c3aed"/>
+                        <text class="badge-text" x="72" y="15" text-anchor="middle" font-size="8" fill="white">🤖 LLM CONSOLIDATION</text>
+                        <text class="node-label" x="72" y="46" text-anchor="middle" font-size="11" fill="#5b21b6">Analyze &amp; Decide</text>
+                        <text class="node-sublabel" x="72" y="64" text-anchor="middle" font-size="8" fill="#7c3aed">• granularity rules</text>
+                        <text class="node-sublabel" x="72" y="78" text-anchor="middle" font-size="8" fill="#7c3aed">• valence assessment</text>
+                        <text class="node-sublabel" x="72" y="92" text-anchor="middle" font-size="8" fill="#7c3aed">• key extraction</text>
+                    </g>
+                    
+                    <!-- Arrow -->
+                    <path d="M 341 50 L 381 50" stroke="#9ca3af" stroke-width="2" marker-end="url(#arr-gray)"/>
+                    
+                    <!-- Node 3: Memory Operations -->
+                    <g transform="translate(391, 0)">
+                        <rect width="160" height="100" rx="8" fill="#ffedd5" stroke="#c2410c" stroke-width="1.5"/>
+                        <text class="node-label" x="80" y="24" text-anchor="middle" font-size="11" fill="#9a3412">📝 Memory Operations</text>
+                        <!-- Operation badges -->
+                        <g transform="translate(15, 34)">
+                            <rect width="38" height="18" rx="4" fill="#dcfce7" stroke="#16a34a" stroke-width="1"/>
+                            <text class="badge-text" x="19" y="13" text-anchor="middle" font-size="7" fill="#15803d">INSERT</text>
+                        </g>
+                        <g transform="translate(60, 34)">
+                            <rect width="40" height="18" rx="4" fill="#fef9c3" stroke="#ca8a04" stroke-width="1"/>
+                            <text class="badge-text" x="20" y="13" text-anchor="middle" font-size="7" fill="#a16207">UPDATE</text>
+                        </g>
+                        <g transform="translate(107, 34)">
+                            <rect width="38" height="18" rx="4" fill="#fee2e2" stroke="#dc2626" stroke-width="1"/>
+                            <text class="badge-text" x="19" y="13" text-anchor="middle" font-size="7" fill="#b91c1c">DELETE</text>
+                        </g>
+                        <text class="node-sublabel" x="80" y="72" text-anchor="middle" font-size="8" fill="#9a3412">keys[], details,</text>
+                        <text class="node-sublabel" x="80" y="86" text-anchor="middle" font-size="8" fill="#9a3412">valence, memory_id</text>
+                    </g>
+                    
+                    <!-- Arrow -->
+                    <path d="M 559 50 L 599 50" stroke="#0284c7" stroke-width="2" marker-end="url(#arr-embed)"/>
+                    
+                    <!-- Node 4: Embedding -->
+                    <g transform="translate(609, 0)">
+                        <rect width="130" height="100" rx="8" fill="#e0f2fe" stroke="#0284c7" stroke-width="2"/>
+                        <rect width="130" height="22" rx="8" fill="#0284c7"/>
+                        <rect y="14" width="130" height="8" fill="#0284c7"/>
+                        <text class="badge-text" x="65" y="15" text-anchor="middle" font-size="8" fill="white">📐 EMBED</text>
+                        <text class="node-label" x="65" y="46" text-anchor="middle" font-size="11" fill="#0369a1">Vectorize</text>
+                        <text class="node-sublabel" x="65" y="64" text-anchor="middle" font-size="8" fill="#0284c7">• key_embedding[]</text>
+                        <text class="node-sublabel" x="65" y="78" text-anchor="middle" font-size="8" fill="#0284c7">• content_embedding</text>
+                        <rect x="25" y="84" width="80" height="12" rx="3" fill="#bae6fd"/>
+                        <text class="node-sublabel" x="65" y="93" text-anchor="middle" font-size="7" fill="#0369a1">Vector[1536]</text>
+                    </g>
+                    
+                    <!-- Arrow -->
+                    <path d="M 747 50 L 787 50" stroke="#059669" stroke-width="2" marker-end="url(#arr-db)"/>
+                    
+                    <!-- Node 5: Database -->
+                    <g transform="translate(797, 0)">
+                        <rect width="130" height="100" rx="8" fill="#d1fae5" stroke="#059669" stroke-width="2"/>
+                        <rect width="130" height="22" rx="8" fill="#059669"/>
+                        <rect y="14" width="130" height="8" fill="#059669"/>
+                        <text class="badge-text" x="65" y="15" text-anchor="middle" font-size="8" fill="white">🗄️ DATABASE</text>
+                        <text class="node-label" x="65" y="46" text-anchor="middle" font-size="11" fill="#047857">PostgreSQL</text>
+                        <text class="node-sublabel" x="65" y="64" text-anchor="middle" font-size="8" fill="#059669">episodic_memories</text>
+                        <text class="node-sublabel" x="65" y="78" text-anchor="middle" font-size="8" fill="#059669">episodic_memory_keys</text>
+                        <rect x="25" y="84" width="80" height="12" rx="3" fill="#a7f3d0"/>
+                        <text class="node-sublabel" x="65" y="93" text-anchor="middle" font-size="7" fill="#047857">HNSW indexed</text>
+                    </g>
+                    
+                    <!-- Checkmark -->
+                    <g transform="translate(950, 25)">
+                        <circle cx="20" cy="25" r="20" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
+                        <text x="20" y="32" text-anchor="middle" font-size="20" fill="#16a34a">✓</text>
+                    </g>
+                </svg>
+            </div>
+        </div>
+        
+        <!-- Bottom info cards -->
+        <div class="bottom-grid">
+            <div class="info-card schema">
+                <h3>📊 Schema: EpisodicMemory</h3>
+                <p><code>episodic_memories</code> ← 1:N → <code>episodic_memory_keys</code></p>
+                <ul>
+                    <li><code>content</code> — experience description (20-50 words)</li>
+                    <li><code>content_embedding</code> — Vector[1536], HNSW indexed</li>
+                    <li><code>valence</code> — emotional significance [-1.0, +1.0]</li>
+                    <li><code>keys[]</code> → each with <code>key_string</code> + <code>key_embedding</code></li>
+                </ul>
+            </div>
+            <div class="info-card rules">
+                <h3>🔄 Consolidation Rules</h3>
+                <p>LLM determines memory operations following granularity principles:</p>
+                <ul>
+                    <li><strong>INSERT</strong> — new experience with extracted keys + valence</li>
+                    <li><strong>UPDATE</strong> — enhance existing record, adjust valence</li>
+                    <li><strong>DELETE</strong> — remove duplicate memories only</li>
+                    <li>Each memory = one coherent interaction or event sequence</li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Legend -->
+        <div class="legend">
+            <div class="legend-item">
+                <div class="legend-dot" style="background: #ede9fe; border-color: #7c3aed;"></div>
+                <span>LLM Transform</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-dot" style="background: #e0f2fe; border-color: #0284c7;"></div>
+                <span>Embedding Model</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-dot" style="background: #d1fae5; border-color: #059669;"></div>
+                <span>Database</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-dot" style="background: #dbeafe; border-color: #1d4ed8;"></div>
+                <span>Memory Data</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-dot" style="background: #ffedd5; border-color: #c2410c;"></div>
+                <span>Operations</span>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
