@@ -35,7 +35,7 @@
 
 ---
 
-## Slide 4: The Question
+## Slide 4: Transition — "What can neuroscience teach us?"
 - [Pause for effect]
 - This question drove much of my work at U of T Psychology
 - The brain has spent millions of years solving the memory problem
@@ -43,7 +43,7 @@
 
 ---
 
-## Slide 5: Hippocampus Overview
+## Slide 5: Human Learning & Memory
 - The hippocampus is remarkable - it sits at the top of the cortical hierarchy
 - It can bind information from anywhere in the brain into coherent episodes
 - The key regions each have specialized functions
@@ -64,7 +64,7 @@
 
 ---
 
-## Slide 7: Hippocampal DNN
+## Slide 7: Hippocampal DNN Architecture
 - This is how we translate the biology into neural network architecture
 - Complementary learning systems: SLOW neocortex + FAST hippocampus
 - The key insight: you need separate systems for gradual learning vs. rapid encoding
@@ -72,17 +72,7 @@
 
 ---
 
-## Slide 8: Distributed TD Learning
-- This is about making learning itself more biologically plausible
-- Standard backprop requires global error signals - the brain doesn't work this way
-- Distributed TD learning gives each layer its own local error signal
-- Think of it as "artificial dopamine" - local rewards, not global errors
-- [Paper citation: NeurIPS 2024]
-- This has implications for how we might build more robust learning systems
-
----
-
-## Slide 9: Engineering Episodic Memory for Agents
+## Slide 8: Engineering Episodic Memory for Agents
 - Now let's connect this to practical systems
 - We don't need hippocampal DNN modules - RAG-based architectures work too
 - Two phases that mirror biological memory:
@@ -93,7 +83,14 @@
 
 ---
 
-## Slide 10: Three Modes of Plasticity
+## Slide 9: Transition — "Memory is one mode of plasticity"
+- [Brief pause to let the memory section sink in]
+- Memory is one mode of plasticity — one way agents can learn from experience
+- But what are the other pathways available to us?
+
+---
+
+## Slide 10: Three Modes of Plasticity for Agents
 - Here's where I want to talk about learning more broadly
 - There are three basic modes of plasticity for agents:
   1. **Weights** (slow): Pre-training, fine-tuning, RLHF, ES
@@ -117,7 +114,15 @@
 
 ---
 
-## Slide 12: Evolutionary Program Search
+## Slide 12: Transition — "What's the alternative?"
+- [Pause]
+- If the current paradigm of RLHF won't scale...
+- And we need agents that can learn through experience in social environments...
+- What's the alternative approach?
+
+---
+
+## Slide 13: Evolutionary Program Search
 - This is exciting recent work connecting evolution to program search
 - Darwin Gödel Machine: self-improving coding agents via evolutionary search
 - ProFiT: same principle applied to trading programs in Python
@@ -126,7 +131,7 @@
 
 ---
 
-## Slide 13: ES vs RL
+## Slide 14: ES vs RL
 - This slide is a bit technical but important
 - Evolution Strategies and RL are both optimization methods, but they work differently
 - ES explores in parameter space - one noise sample per trajectory
@@ -137,7 +142,7 @@
 
 ---
 
-## Slide 14: From Game Agents to LLM Fine-Tuning
+## Slide 15: From Game Agents to LLM Fine-Tuning
 - This is where I want to make a connection across scales
 - 2017-2019: Game agents with ~1M parameters, N=10,000+ population
 - 2025: LLMs with 7B parameters, N=30 population
@@ -147,17 +152,24 @@
 
 ---
 
-## Slide 15: Applied Research Agenda
+## Slide 16: Transition — "How do we translate this?"
+- [Pause - the technical deep-dive is complete]
+- So we've covered memory, plasticity, social environments, and evolutionary methods
+- How do we translate all of this into applied research at Vector?
+
+---
+
+## Slide 17: Applied Research Agenda
 - Here's where I want to get concrete about what we might do at Vector
 - Three directions that connect back to my research:
-  1. **Agentic Evals & Benchmarks**: Apply evals to agentic systems, not just models (connects to memory slides)
-  2. **Multi-Modal Plasticity**: ES and evolutionary program search, even with frozen LLMs (connects to ES/DGM slides)
-  3. **Social AI**: Privacy-preserving learning, multi-agent coordination (connects to social slides)
+  1. **Agentic Evals & Benchmarks**: Apply evals to agentic systems, not just models (connects to memory section)
+  2. **Multi-Modal Plasticity**: ES and evolutionary program search, even with frozen LLMs (connects to evolution section)
+  3. **Social AI**: Privacy-preserving learning, multi-agent coordination (connects to social section)
 - These three directions intersect: benchmarks provide training environments, plasticity modes provide learning pathways, social settings provide rich feedback
 
 ---
 
-## Slide 16: Research Translation Impact
+## Slide 18: Research Translation Impact
 - Let me give some concrete examples of research → application
 - EpBench → Evaluate memory-augmented agents for enterprise workflows
 - Darwin Gödel Machine → Optimize agent scaffolding, prompts, tool configurations automatically
@@ -166,7 +178,7 @@
 
 ---
 
-## Slide 17: Closing
+## Slide 19: Closing
 - [Return to thesis]
 - The current paradigm — train once, RLHF into compliance — won't scale
 - We need agents that remember, multiple modes of plasticity, and rich social environments

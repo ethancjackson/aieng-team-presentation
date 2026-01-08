@@ -7,7 +7,7 @@
     'use strict';
 
     // Configuration
-    const TOTAL_SLIDES = 18;
+    const TOTAL_SLIDES = 20;
     let currentSlide = 0;
     let speakerNotesVisible = false;
 
@@ -21,114 +21,70 @@
     const speakerNotes = {
         0: `<h3>Slide 0: Title</h3>
             <p>Welcome everyone, thank you for having me.</p>
-            <p>I'm excited to share my research background and vision for our work together.</p>
-            <p>This presentation covers three interconnected themes: memory, social intelligence, and alignment.</p>`,
+            <p>I'm excited to share my research background and vision for our work together.</p>`,
         
         1: `<h3>Slide 1: About Me</h3>
             <p>Quick journey through my career.</p>
-            <p>Notice the recurring themes: evolutionary methods, memory systems, social AI.</p>
-            <p>Each step built toward understanding how intelligent systems can learn and adapt.</p>`,
+            <p>Notice the recurring themes: evolutionary methods, memory systems, social AI.</p>`,
         
-        2: `<h3>Slide 2: Thesis Statement</h3>
-            <p>This is the core argument I want to make today.</p>
-            <p>Current AI has impressive capabilities but lacks two critical things:</p>
-            <ul>
-                <li>Memory: the ability to learn from experience over time</li>
-                <li>Social accountability: the sense that actions have consequences</li>
-            </ul>
-            <p>These aren't nice-to-haves; I believe they're essential for alignment.</p>`,
+        2: `<h3>Slide 2: Three Pillars</h3>
+            <p>This is the core argument: Memory + Plasticity + Social Environments.</p>
+            <p>The current paradigm won't scale to aligned agentic AI.</p>`,
         
         3: `<h3>Slide 3: The Memory Gap</h3>
-            <p>The Hendrycks et al. paper provides a rigorous framework for measuring AGI progress.</p>
-            <p>GPT-5 scores 57% toward AGI - impressive, but look where the gaps are.</p>
-            <p>Almost all deficits are in memory-related dimensions.</p>
-            <p>This isn't a bug in the models; it's a fundamental architectural limitation.</p>`,
+            <p>Hendrycks et al. AGI framework shows memory as the primary deficit.</p>`,
         
-        4: `<h3>Slide 4: The Question</h3>
-            <p>[Pause for effect]</p>
-            <p>This question drove much of my work at U of T Psychology.</p>
-            <p>The brain has spent millions of years solving the memory problem.</p>`,
+        4: `<h3>Slide 4: Transition</h3>
+            <p>[Pause] What can neuroscience teach us about memory systems?</p>`,
         
-        5: `<h3>Slide 5: Hippocampus Overview</h3>
-            <p>The hippocampus is remarkable - it sits at the top of the cortical hierarchy.</p>
-            <p>Key regions each have specialized functions:</p>
-            <ul>
-                <li>EC is the gateway in and out</li>
-                <li>DG creates sparse, separated representations</li>
-                <li>CA3 stores the core engram and enables pattern completion</li>
-            </ul>
-            <p>This architecture is an evolutionary solution to a fundamental tradeoff.</p>`,
+        5: `<h3>Slide 5: Hippocampus</h3>
+            <p>The hippocampus balances pattern separation with pattern completion.</p>`,
         
         6: `<h3>Slide 6: Pattern Separation & Completion</h3>
-            <p>These are the two fundamental operations of episodic memory.</p>
-            <p>Pattern separation: making similar things distinct (was it Tuesday or Wednesday?)</p>
-            <p>Pattern completion: recalling the whole from a part.</p>
-            <p>The hippocampus balances both through its anatomy.</p>`,
+            <p>Two fundamental operations of episodic memory.</p>`,
         
         7: `<h3>Slide 7: Hippocampal DNN</h3>
-            <p>This is how we translate the biology into neural network architecture.</p>
-            <p>Two pathways that alternate like the brain's theta rhythm.</p>
-            <p>The key insight: you need separate phases for storing vs. retrieving.</p>`,
+            <p>Complementary learning systems: SLOW neocortex + FAST hippocampus.</p>`,
         
-        8: `<h3>Slide 8: Distributed TD Learning</h3>
-            <p>This is about making learning itself more biologically plausible.</p>
-            <p>Standard backprop requires global error signals - the brain doesn't work this way.</p>
-            <p>Distributed TD learning gives each layer its own local error signal.</p>
-            <p>Think of it as "artificial dopamine" - local rewards, not global errors.</p>`,
+        8: `<h3>Slide 8: Engineering Memory for Agents</h3>
+            <p>RAG-based architectures offer practical engineering solutions.</p>`,
         
-        9: `<h3>Slide 9: Episodic Memory for RAG</h3>
-            <p>Now let's connect this to practical systems.</p>
-            <p>Key insight: memories aren't just facts, they're experiences with context and emotion.</p>
-            <p>The "valence" field captures emotional significance.</p>
-            <p>Question I'd love to see answered: What would AGI benchmarks look like for memory-enabled agents?</p>`,
+        9: `<h3>Slide 9: Transition — Plasticity</h3>
+            <p>Memory is one mode of plasticity. What other pathways exist?</p>`,
         
-        10: `<h3>Slide 10: Social Transition</h3>
-             <p>[Brief pause]</p>
-             <p>Now let's shift from individual cognition to social dynamics.</p>
-             <p>Memory is necessary but not sufficient. What else do intelligent systems need?</p>`,
+        10: `<h3>Slide 10: Three Modes of Plasticity</h3>
+             <p>Weights (slow), Adapters (medium), External Memory (fast).</p>
+             <p>RL isn't the only option — ES provides alternatives.</p>`,
         
-        11: `<h3>Slide 11: Social Coordination</h3>
-             <p>This is research I co-authored at U of T.</p>
-             <p>We found something counterintuitive: stereotypes emerge from coordination, not bias.</p>
-             <p>The implication for AI: alignment isn't just about individual models.</p>
-             <p>It's about the structure of interaction.</p>`,
+        11: `<h3>Slide 11: Social Environments</h3>
+             <p>Social AI is emerging. Agents that learn from experience introduce privacy concerns.</p>
+             <p>The current paradigm can't produce appropriate values through social experience.</p>`,
         
-        12: `<h3>Slide 12: Darwin Gödel Machine</h3>
-             <p>This is exciting recent work on self-improving AI.</p>
-             <p>Key innovation: it maintains an archive of diverse solutions.</p>
-             <p>But notice: it requires validation, sandboxing, oversight.</p>
-             <p>Self-improvement without accountability is dangerous.</p>`,
+        12: `<h3>Slide 12: Transition — Alternative Approaches</h3>
+             <p>If RLHF won't scale, what's the alternative?</p>`,
         
-        13: `<h3>Slide 13: ES vs RL</h3>
-             <p>This slide is a bit technical but important.</p>
-             <p>ES explores in parameter space - one noise sample per trajectory.</p>
-             <p>RL explores in action space - noise at every token.</p>
-             <p>ES has dramatically lower variance - 15x in this study.</p>`,
+        13: `<h3>Slide 13: Evolutionary Program Search</h3>
+             <p>DGM and ProFiT show evolution works for code/agent search.</p>`,
         
-        14: `<h3>Slide 14: Landscape Smoothing</h3>
-             <p>This is a visual intuition for why ES works.</p>
-             <p>RL navigates the raw, jagged reward landscape.</p>
-             <p>ES effectively smooths it through Gaussian convolution.</p>
-             <p>Open question: why does N=30 optimize 7 billion parameters?</p>`,
+        14: `<h3>Slide 14: ES vs RL</h3>
+             <p>ES explores parameter space, RL explores action space.</p>
+             <p>ES has 15x lower variance and scales to 7B params with N=30.</p>`,
         
-        15: `<h3>Slide 15: Alignment Through Evolution</h3>
-             <p>This is where everything comes together.</p>
-             <p>I don't believe we can hand-design alignment.</p>
-             <p>What we can do is design environments where alignment is advantageous.</p>
-             <p>Memory provides the capacity to learn from consequences.</p>
-             <p>Social accountability provides the consequences to learn from.</p>`,
+        15: `<h3>Slide 15: From Game Agents to LLM Fine-Tuning</h3>
+             <p>Evolutionary principles scale from millions to billions of parameters.</p>`,
         
-        16: `<h3>Slide 16: Vision</h3>
-             <p>Looking ahead at Vector, I see three pillars.</p>
-             <p>Memory systems: continuing the hippocampus-inspired work.</p>
-             <p>Social intelligence: understanding multi-agent dynamics.</p>
-             <p>Evolutionary alignment: using selection pressures to achieve robustness.</p>`,
+        16: `<h3>Slide 16: Transition — Applied Research</h3>
+             <p>How do we translate this into applied research at Vector?</p>`,
         
-        17: `<h3>Slide 17: Closing</h3>
-             <p>[Return to thesis]</p>
-             <p>Memory and social accountability - not optional features, but requirements.</p>
-             <p>I'm excited to be here and to collaborate with all of you.</p>
-             <p>Questions?</p>`
+        17: `<h3>Slide 17: Applied Research Agenda</h3>
+             <p>Three directions: Agentic Evals, Multi-Modal Plasticity, Social AI.</p>`,
+        
+        18: `<h3>Slide 18: Research Translation Impact</h3>
+             <p>EpBench, DGM, Virtual Agent Economies → real applications.</p>`,
+        
+        19: `<h3>Slide 19: Closing</h3>
+             <p>The current paradigm won't scale. We need memory, plasticity, social environments.</p>
+             <p>This is the research I'm here to do.</p>`
     };
 
     /**
