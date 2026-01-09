@@ -1,0 +1,310 @@
+=== SLIDE 0: TITLE ===
+
+Neuroscience, Evolution, and the Path to Aligned AI
+Research Introduction for the AI Engineering Team
+
+Ethan C. Jackson, PhD
+Applied ML Scientist, Vector Institute
+January 12, 2026
+
+
+=== SLIDE 1: ABOUT ME ===
+
+Introduction
+
+[FIGURE: Timeline with career milestones]
+
+2014–2019: PhD Researcher, Western University
+- Evolutionary RL / NAS, Novelty Search, Neuroimaging
+
+2019–2020: Postdoctoral Researcher, University of Guelph
+- Deep Learning for Forecasting, Canada's Food Price Report
+
+2020–2022: Applied ML Scientist, Vector Institute
+- Data Science & Forecasting, Privacy Technologies
+
+2022–2024: Social AI Researcher, University of Toronto
+- Multiagent RL, Artificial Hippocampus, Biologically Plausible Learning
+
+2022–2025: Co-Founder, ChainML / Theoriq
+- Analytics Agents, Memory & Learning, Agent-to-Agent Protocol
+
+2026–Present: Applied ML Scientist, Vector Institute
+- Agents & Reasoning, Social & Evolutionary AI
+
+
+=== SLIDE 2: THREE RESEARCH THEMES ===
+
+[FIGURE: Three cards with icons representing each theme]
+
+🧠 Neuroscience-Inspired AI
+Leveraging brain insights to build better AI — memory systems and learning algorithms
+
+🧬 Evolutionary Methods
+LLM-guided program search and ES for fine-tuning — evolutionary algorithms are powerful in the LLM era
+
+👥 Social Learning Thesis
+AI alignment may require agents that learn in environments with real consequences — not just by RL after the fact
+
+These aren't separate interests — they represent a progression:
+from how individuals learn, to how populations improve, to how groups coordinate.
+
+
+=== SLIDE 3: THE MEMORY GAP ===
+
+"A Definition of AGI" — Hendrycks et al. (2025)
+Framework based on Cattell-Horn-Carroll cognitive theory
+
+[FIGURE: Bar chart showing GPT-4 at 27% and GPT-5 at 57% of AGI capability]
+
+Cognitive Profile:
+✓ Reasoning
+✓ Knowledge
+✓ Perception
+✓ Processing Speed
+✗ Long-term Memory
+✗ Learning Efficiency
+✗ Experiential Memory
+
+Primary gap: Memory systems — and memory isn't just about capability.
+It's about learning from consequences over time.
+
+
+=== SLIDE 4: TRANSITION ===
+
+What can neuroscience teach us about building memory systems for AI?
+
+
+=== SLIDE 5: HIPPOCAMPUS OVERVIEW ===
+
+Human Learning & Memory
+
+[FIGURE: Diagram of hippocampal circuit showing:
+- Cortex (distributed representations)
+- EC (Entorhinal Cortex)
+- DG (Dentate Gyrus) - 5% sparse
+- CA3 (Pattern Completion)
+- CA1 (Output)
+- Arrows showing encoding and recall pathways]
+
+The hippocampus balances pattern separation (distinct memories) with pattern completion (retrieval from cues)
+
+
+=== SLIDE 6: PATTERN SEPARATION & COMPLETION ===
+
+[FIGURE: Two-panel diagram]
+
+Pattern Separation (Dentate Gyrus):
+- Similar inputs → distinct sparse codes
+- Prevents memory interference
+- Only ~5% of neurons active
+- Visual: Two similar patterns A and B becoming orthogonal representations
+
+Pattern Completion (CA3):
+- Partial cue → full memory recall
+- Dense recurrent connections
+- Associative retrieval
+- Visual: Partial pattern reconstructed to complete memory
+
+The tradeoff: Too much separation → can't generalize. Too much completion → memories blur.
+
+
+=== SLIDE 7: HIPPOCAMPAL DNN ARCHITECTURE ===
+
+Complementary Learning Systems: Fast hippocampal encoding + Slow neocortical consolidation
+
+[FIGURE: Two pathways diagram]
+
+MSP: Monosynaptic Pathway (ENCODING)
+- Theta Phase 1 — Direct autoencoder baseline (CA3 inhibited)
+- EC → slow → CA1 → slow → EC
+
+TSP: Trisynaptic Pathway (RECALL)
+- Theta Phase 2 — Pattern separation → Association → Completion
+- EC → DG → fast → CA3 → fast → CA1 → EC
+
+Fast learning — One-shot episodic encoding (sparse → low interference)
+Slow learning — Gradual semantic consolidation (distributed representations)
+
+
+=== SLIDE 8: ENGINEERING EPISODIC MEMORY FOR AGENTS ===
+
+We don't need hippocampal DNN modules to give agents episodic memory. RAG-based architectures offer practical engineering solutions — with parallels to biological complementary learning systems.
+
+[FIGURE: Two pipeline diagrams]
+
+Memory Retrieval Pipeline (FAST RECALL):
+Dialog → LLM Query Extraction → Vectorize → pgvector Search → Top-K Memories → LLM Response
+
+Memory Consolidation Pipeline (SLOW LEARNING):
+Inputs → LLM Analyze & Decide → INSERT/UPDATE/DELETE → Vectorize → PostgreSQL (HNSW indexed)
+
+Two distinct phases mirror biological memory: retrieval (pattern completion) and consolidation (post-interaction learning).
+
+What would AGI benchmarks look like for a memory-enabled agent?
+
+
+=== SLIDE 9: DISTRIBUTED TD LEARNING ===
+
+Artificial Dopamine: Distributed TD Learning
+
+[FIGURE: Neural network diagram showing:
+- Three layers (1, 2, 3) at time t-1 and time t
+- Each layer computes its own Q value (Q₁, Q₂, Q₃)
+- Local TD errors (δ₁, δ₂, δ₃) computed independently
+- Reward broadcast to all layers
+- Final Q̄(s,a) = Average of (Q₁+Q₂+Q₃)/3
+- Action selection via argmax Q̄
+- Arrows showing: Info UP (within timestep), Activations DOWN (across time)]
+
+Guan, Verch, Voelcker, Jackson, Papernot & Cunningham — NeurIPS 2024
+
+Key insight: Each layer independently computes δ = r + γ·max Q(s',a') − Q(s,a) and updates its own weights. No error propagation between layers. No backprop (inference only).
+
+
+=== SLIDE 10: TRANSITION ===
+
+Memory helps agents learn from their own experience.
+
+But what if we could learn from the experience of many agents at once?
+
+
+=== SLIDE 11: EVOLUTIONARY PROGRAM SEARCH ===
+
+LLM-driven evolution discovers algorithms by iteratively mutating, evaluating, and selecting programs
+
+🧬 Darwin Gödel Machine — Zheng, Hu, Lu, Lange & Clune (2025)
+- Search space: Coding agent architectures
+- Fitness: SWE-bench, Polyglot benchmarks
+- Results: SWE-bench 20% → 50%, Polyglot 14% → 31%
+- Self-modifying agents that improve their own code editing tools, context management, peer-review
+
+📈 ProFiT — Soper, Khalifa, Soros, Nasir, Azhang & Togelius (2025)
+- Search space: Python trading programs
+- Fitness: Walk-forward validation returns
+- Results: 77% win rate vs Buy-Hold, 100% win rate vs Random
+- Evolving strategies adapt to non-stationary markets via code mutation + self-analysis
+
+[FIGURE: Three representations showing policies aren't just LLM prompts:
+- 💬 LLM Agent
+- 🧠 Neural Net
+- 📜 Program]
+
+Evolutionary search operates over any executable representation — LLMs as mutation operators, not just as policies
+
+Open-source tools like OpenEvolve make this accessible to try today
+
+
+=== SLIDE 12: EVOLUTION STRATEGIES VS REINFORCEMENT LEARNING ===
+
+ES scales to billions of parameters by exploring in parameter space, not action space
+
+[FIGURE: Two-panel comparison]
+
+Evolution Strategies (ES) — Explore in parameter space:
+- Visual: Population of 30 points (θ₁...θ₃₀) in parameter space, fitness-colored
+- θ = θ₀ + σ·(ε₁ + ε₂ + ··· + εₜ)
+- Seeds → Gaussian noise trajectory
+- One noise sample per trajectory
+- No backpropagation (inference only)
+- Low variance, stable optimization
+- No reward hacking observed
+- Key trick: Store seeds, not tensors — Memory: O(generations) vs O(7B params)
+
+Reinforcement Learning (PPO/GRPO) — Explore in action space:
+- Visual: Token sequence "The → answer → is → 42" with noise at every step
+- Noise at every step → high variance
+- Requires backpropagation
+- Credit assignment across 100s of tokens
+- Prone to reward hacking (needs KL penalty)
+- Empirical: 15.5× higher std across runs
+
+Qiu, Gan, Hayes, Liang, Meyerson, Hodjat & Miikkulainen — "Evolution Strategies at Scale: LLM Finetuning Beyond RL" (2025)
+
+
+=== SLIDE 13: FROM GAME AGENTS TO LLM FINE-TUNING ===
+
+The same evolutionary principles scale from millions to billions of parameters
+
+[FIGURE: Timeline with three stages]
+
+2017–2019: Game Agents 🎮
+- Atari DQN via GA, ~1M params, N=10,000+
+- Such et al. (2017) → Extended: Jackson (2019)
+
+2025: LLM Fine-Tuning 🧠
+- Qwen/Llama 7B via ES, ~7B params, N=30 (!)
+- Qiu et al. (2025)
+
+Future: Agentic Systems? 🤖
+- Full agent optimization
+- Architecture + weights + prompts
+- Open research direction
+
+🔬 Why Does N=30 Work?
+[FIGURE: Diagram showing 7B params (apparent) mapping to ~1000 intrinsic dims]
+Low intrinsic dimensionality — LLMs' effective parameter space is much smaller than nominal. Consistent with LoRA.
+
+🌊 Landscape Smoothing
+[FIGURE: Two loss landscapes - jagged RL (raw) vs smooth ES (smoothed)]
+Gaussian convolution — Population averaging smooths loss surface, enabling stable optimization.
+
+Implication: Evolutionary methods may unlock optimization for agentic systems that gradient-based RL cannot — architecture search, prompt evolution, multi-component agents.
+
+
+=== SLIDE 14: TRANSITION ===
+
+Evolution optimizes populations — but each agent is evaluated independently.
+
+What happens when agents must interact to survive?
+When success depends on coordination, not just individual performance?
+
+
+=== SLIDE 15: THE SOCIAL LEARNING THESIS ===
+
+Why consequence-driven development matters
+
+[FIGURE: Two contrasting boxes]
+
+How We Train AI:
+Models are trained on everything at once, then pressured via RLHF to suppress undesirable behaviors. They face zero social consequences for their outputs in deployment.
+
+How Humans Learn Values:
+Children learn from early on that harmful actions lead to concrete, enforced consequences. This shapes intrinsic motivation — not just surface compliance.
+
+"Alignment cannot be engineered at the 'genomic' level of AI models."
+
+What we can engineer are the environments in which adaptive behaviors emerge — structuring their world such that caring is how they survive.
+
+The risk is real: Unstructured coordination produces harmful patterns that persist across generations of new agents.
+— Gelpí, Tang, Jackson & Cunningham, PNAS Nexus 2025
+
+The opportunity: Design "sandbox economies" where safe behaviors emerge through structured interaction and real consequences.
+— Tomašev et al., DeepMind 2025
+
+
+=== SLIDE 16: INTERESTING DIRECTIONS + CLOSING ===
+
+A few areas I think are worth exploring
+
+[FIGURE: Three cards]
+
+📊 Agentic Evals
+Most evals target models. We need benchmarks for agentic systems — especially memory-augmented agents.
+- Episodic memory benchmarks
+- Multi-turn reasoning with context
+
+🧬 Evolutionary Methods
+Evolutionary approaches for agent improvement — optimizing weights or evolving code/scaffolding.
+- ES for weight optimization
+- Evolutionary program search (DGM-style)
+
+👥 Social Learning
+Building AI systems that develop intrinsic motivation through experience with real consequences.
+- Consequence-aware training paradigms
+- Multi-agent environments with accountability
+
+These directions share a common thread: moving beyond "train once, deploy forever" toward agents that continue to learn and adapt appropriately.
+
+Thank you
+ethan.jackson@vectorinstitute.ai

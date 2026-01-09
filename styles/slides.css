@@ -2262,6 +2262,27 @@
     font-weight: 500;
 }
 
+.key-quote blockquote.two-beats {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.key-quote blockquote.two-beats p {
+    margin: 0;
+}
+
+.key-quote blockquote.two-beats .beat-1 {
+    font-size: 1.15rem;
+    font-weight: 500;
+    color: #1e40af;
+}
+
+.key-quote blockquote.two-beats .beat-2 {
+    font-size: 1rem;
+    font-style: normal;
+}
+
 /* Two-mode plasticity layout */
 .plasticity-modes.two-modes {
     grid-template-columns: 1fr 1fr;
