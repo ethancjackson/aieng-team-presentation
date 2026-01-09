@@ -266,20 +266,23 @@ Why consequence-driven development matters
 [FIGURE: Two contrasting boxes]
 
 How We Train AI:
-Models are trained on everything at once, then pressured via RLHF to suppress undesirable behaviors. They face zero social consequences for their outputs in deployment.
+AI systems have no mechanism for intrinsic motivation or value formation. They're exposed to everything at once, then pressured after the fact to suppress undesirable outputs. There are no internalized consequences — only external feedback.
 
 How Humans Learn Values:
 Children learn from early on that harmful actions lead to concrete, enforced consequences. This shapes intrinsic motivation — not just surface compliance.
 
-"Alignment cannot be engineered at the 'genomic' level of AI models."
+"We cannot engineer alignment into the weights of AI models."
 
-What we can engineer are the environments in which adaptive behaviors emerge — structuring their motivations such that alignment is necessary for survival.
+What we can engineer are the environments — and the selection pressures — that make alignment adaptive.
 
-The risk is real: Unstructured coordination produces harmful patterns that persist across generations of new agents.
+Risks from algorithms: Standard coordination produces harmful patterns that persist across agent generations.
 — Gelpí, Tang, Jackson & Cunningham, PNAS Nexus 2025
 
-The opportunity: Design "sandbox economies" where safe behaviors emerge through structured interaction and real consequences.
-— Tomašev et al., DeepMind 2025
+Risks from interactions: Collective behaviors may be harmful even when individual agents appear safe.
+— Tomašev et al., Distributional AGI Safety 2025
+
+The opportunity: Design sandbox economies where safe behaviors emerge through structured interaction and real consequences.
+— Tomašev et al., Virtual Agent Economies 2025
 
 
 === SLIDE 16: INTERESTING DIRECTIONS + CLOSING ===
