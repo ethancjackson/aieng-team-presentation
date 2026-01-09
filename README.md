@@ -30,35 +30,81 @@ Touch/swipe also supported on mobile.
 
 ---
 
+## Narrative Arc
+
+The presentation tells a progressive story across three themes:
+
+```
+Individual Learning → Population Learning → Social Learning
+```
+
+1. **Neuroscience-Inspired AI** (Slides 3-9): How does ONE agent learn? Memory systems and learning algorithms from the brain.
+
+2. **Evolutionary Methods** (Slides 10-13): How do MANY agents improve? Population-based optimization in the LLM era.
+
+3. **Social Learning Thesis** (Slides 14-16): What if agents must INTERACT? Alignment through consequence-driven development.
+
+Each theme builds on the previous — this progression should be preserved when editing.
+
+---
+
 ## Project Structure
 
 ```
 aieng-team-presentation/
 ├── index.html              # Main entry point (shell that loads slides)
-├── slides/                 # Individual slide HTML files
+├── presentation-text.txt   # Text-only version with figure descriptions
+├── slides/                 # Individual slide HTML files (00-16)
 │   ├── 00-title.html
 │   ├── 01-about-me.html
 │   ├── ...
-│   ├── 19-closing.html
+│   ├── 16-applied-agenda.html
 │   └── outtakes/           # Slides removed from presentation
 ├── scripts/
-│   ├── slide-loader.js     # Dynamically loads slides into index.html
-│   └── navigation.js       # Keyboard nav, progress bar, speaker notes
+│   ├── slide-loader.js     # SLIDE_FILES array defines order
+│   └── navigation.js       # TOTAL_SLIDES, speakerNotes object
 ├── styles/
 │   ├── base.css            # CSS variables, resets, typography
 │   ├── slides.css          # Slide layouts and components
 │   ├── diagrams.css        # SVG and diagram-specific styles
 │   └── animations.css      # Keyframes and transitions
 ├── notes/
-│   └── speaker-notes.md    # Detailed speaker notes (also in navigation.js)
-└── source_material/        # Reference papers, PDFs, text extracts
+│   └── speaker-notes.md    # Reference copy (authoritative notes in navigation.js)
+└── source_material/        # Reference papers (gitignored, not in repo)
 ```
+
+---
+
+## Current Slide Structure (17 slides)
+
+| # | File | Content |
+|---|------|---------|
+| 0 | `00-title.html` | Title slide |
+| 1 | `01-about-me.html` | Career timeline |
+| 2 | `02-thesis.html` | Three Research Themes + progression framing |
+| | | **Theme 1: Neuroscience-Inspired AI** |
+| 3 | `03-agi-definition.html` | Memory Gap (Hendrycks) + consequences connection |
+| 4 | `04-memory-question.html` | 🔹 Transition: "What can neuroscience teach us?" |
+| 5 | `05-hippocampus-overview.html` | Hippocampus diagram |
+| 6 | `06-pattern-separation.html` | Pattern Sep/Completion |
+| 7 | `07-hippocampal-dnn.html` | Complementary Learning Systems |
+| 8 | `08-episodic-memory-rag.html` | Engineering Memory (RAG) |
+| 9 | `09-distributed-td.html` | Distributed TD Learning |
+| | | **Theme 2: Evolutionary Methods** |
+| 10 | `10-evolution-transition.html` | 🔹 Bridge: "Learn from many agents at once" |
+| 11 | `11-darwin-godel.html` | LLM-guided Program Search |
+| 12 | `12-es-vs-rl.html` | ES vs RL comparison |
+| 13 | `13-landscape-smoothing.html` | ES for LLM fine-tuning |
+| | | **Theme 3: Social Learning Thesis** |
+| 14 | `14-social-transition.html` | 🔹 Bridge: "What about coordination?" |
+| 15 | `15-social-environments.html` | The Social Learning Thesis |
+| 16 | `16-applied-agenda.html` | Interesting Directions + Closing |
 
 ---
 
 ## How to Edit This Presentation
 
-### Adding/Editing a Slide
+### Editing a Slide
 
 1. **Edit the slide file** in `slides/XX-name.html`
 2. Each slide follows this structure:
@@ -71,15 +117,15 @@ aieng-team-presentation/
    </section>
    ```
 3. **Important:** The `id="slide-X"` must match the slide's position (0-indexed)
+4. **Update speaker notes** in `scripts/navigation.js` (the `speakerNotes` object)
+5. **Bump cache version** in `index.html` after changes
 
 ### Adding a New Slide
 
 1. Create a new file in `slides/` with the next number
 2. Add it to the `SLIDE_FILES` array in `scripts/slide-loader.js`
 3. Update `TOTAL_SLIDES` in `scripts/navigation.js`
-4. Update speaker notes in both:
-   - `scripts/navigation.js` (the `speakerNotes` object)
-   - `notes/speaker-notes.md` (for reference)
+4. Add speaker notes to the `speakerNotes` object in `scripts/navigation.js`
 
 ### Removing a Slide
 
@@ -130,7 +176,10 @@ aieng-team-presentation/
 | `.two-column` | Two-column layout |
 | `.centered-content` | Vertically centered content |
 | `.key-insight` | Highlighted insight box |
+| `.key-quote` | Blockquote styling (use `.two-beats` for split quotes) |
+| `.contrast-box` | Side-by-side comparison boxes |
 | `.citation-inline` | Inline citation styling |
+| `.context-item` | Research context citations |
 
 ---
 
@@ -139,68 +188,52 @@ aieng-team-presentation/
 When making CSS/JS changes, update the version query strings in `index.html`:
 
 ```html
-<link rel="stylesheet" href="styles/base.css?v=28">
-<script src="scripts/navigation.js?v=28"></script>
+<link rel="stylesheet" href="styles/base.css?v=39">
+<script src="scripts/navigation.js?v=39"></script>
 ```
 
 Increment the version number to force browsers to reload.
 
 ---
 
-## Current Slide Structure (17 slides)
-
-| # | File | Content |
-|---|------|---------|
-| 0 | `00-title.html` | Title slide |
-| 1 | `01-about-me.html` | Career timeline |
-| 2 | `02-thesis.html` | Three Research Themes |
-| | | **Theme 1: Neuroscience-Inspired AI** |
-| 3 | `03-agi-definition.html` | Memory Gap (Hendrycks) |
-| 4 | `04-memory-question.html` | 🔹 Transition |
-| 5 | `05-hippocampus-overview.html` | Hippocampus diagram |
-| 6 | `06-pattern-separation.html` | Pattern Sep/Completion |
-| 7 | `07-hippocampal-dnn.html` | Complementary Learning |
-| 8 | `08-episodic-memory-rag.html` | Engineering Memory (RAG) |
-| 9 | `09-distributed-td.html` | Distributed TD Learning |
-| | | **Theme 2: Evolutionary Methods** |
-| 10 | `10-evolution-transition.html` | 🔹 Transition |
-| 11 | `11-darwin-godel.html` | LLM-guided Program Search |
-| 12 | `12-es-vs-rl.html` | ES vs RL comparison |
-| 13 | `13-landscape-smoothing.html` | ES for LLM fine-tuning |
-| | | **Theme 3: Social Learning Thesis** |
-| 14 | `14-social-transition.html` | 🔹 Transition |
-| 15 | `15-social-environments.html` | The Social Learning Thesis |
-| 16 | `16-applied-agenda.html` | Interesting Directions + Closing |
-
----
-
-## Source Materials
-
-The `source_material/` folder contains reference papers and documents:
-
-- `Team Meeting - Jan 12.pdf` - Original slide deck inspiration
-- `ES_LLM_tuning.pdf` - Evolution Strategies for LLM fine-tuning
-- `jackson_thesis_chapters.txt` - PhD thesis chapters on neuroevolution
-- `pnas_paper.txt` - PNAS Nexus paper on emergent stereotyping
-- `virtual_agent_economies.txt` - Tomašev et al. on agent economies
-- `distributional_ai_safety.txt` - Distributional AGI safety paper
-- Various PDFs on hippocampal memory, TD learning, etc.
-
----
-
 ## Tips for AI Agents Editing This Project
 
-1. **Always check `slide-loader.js`** for the current slide order
+### Essential Checks
+1. **Always check `slide-loader.js`** for the current slide order (`SLIDE_FILES` array)
 2. **Slide IDs must be sequential** (0-indexed) and match file positions
-3. **Test in browser** after major changes (use the browser tools)
-4. **Update both speaker notes locations** (JS object + markdown file)
-5. **Bump cache version** in `index.html` after CSS/JS changes
-6. **Keep outtakes** in `slides/outtakes/` rather than deleting
-7. **The presentation uses 4 CSS files** - check the right one:
-   - `base.css` for variables and typography
-   - `slides.css` for layouts and components
-   - `diagrams.css` for SVGs and visualizations
-   - `animations.css` for keyframes
+3. **Test in browser** after major changes — use hard refresh or bump cache version
+4. **Update speaker notes** in `scripts/navigation.js` after content changes
+5. **Bump cache version** in `index.html` after any CSS/JS changes
+
+### File Locations
+- **Slide order**: `scripts/slide-loader.js` → `SLIDE_FILES` array
+- **Slide count**: `scripts/navigation.js` → `TOTAL_SLIDES` constant
+- **Speaker notes**: `scripts/navigation.js` → `speakerNotes` object
+- **Slide content**: `styles/slides.css` for most component styles
+
+### Best Practices
+- **Keep outtakes** in `slides/outtakes/` rather than deleting
+- **Preserve the narrative arc** — transitions should bridge themes, not just change topics
+- **Update `presentation-text.txt`** after content changes for text-only reference
+- **Use existing CSS classes** before creating new ones — check `slides.css`
+
+### The 4 CSS Files
+- `base.css` — variables, resets, typography
+- `slides.css` — layouts, components, most slide-specific styles
+- `diagrams.css` — SVGs and visualizations
+- `animations.css` — keyframes and transitions
+
+---
+
+## Text-Only Version
+
+A compiled text-only version with figure descriptions is available at:
+
+```
+presentation-text.txt
+```
+
+Regenerate after content changes using terminal commands to extract text from HTML files.
 
 ---
 
