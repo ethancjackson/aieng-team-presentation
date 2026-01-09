@@ -28,11 +28,12 @@
             <p>Notice the recurring themes: evolutionary methods, memory systems, social AI.</p>`,
         
         2: `<h3>Slide 2: Three Research Themes</h3>
-            <p>Overview: Neuroscience-inspired AI, Evolutionary Methods, Social Learning Thesis.</p>
-            <p>From understanding how minds learn, to how they might learn to cooperate.</p>`,
+            <p>These represent a progression: individuals → populations → groups.</p>
+            <p>Signal the arc early so transitions feel earned.</p>`,
         
         3: `<h3>Slide 3: The Memory Gap</h3>
-            <p>Hendrycks et al. AGI framework shows memory as the primary deficit.</p>`,
+            <p>Hendrycks et al. AGI framework shows memory as the primary deficit.</p>
+            <p>Key addition: memory isn't just capability — it's learning from consequences over time.</p>`,
         
         4: `<h3>Slide 4: Transition — Neuroscience</h3>
             <p>[Pause] What can neuroscience teach us about memory and learning?</p>`,
@@ -54,7 +55,8 @@
              <p>Local TD errors like dopamine signals. No backprop between layers.</p>`,
         
         10: `<h3>Slide 10: Transition — Evolution</h3>
-             <p>Evolutionary methods are making a surprising comeback in the LLM era.</p>`,
+             <p>Bridge from individual to population learning.</p>
+             <p>"Memory helps agents learn from their own experience. What if we could learn from many agents at once?"</p>`,
         
         11: `<h3>Slide 11: LLM-guided Program Search</h3>
              <p>DGM and ProFiT show evolution works for code/agent search.</p>
@@ -69,15 +71,17 @@
              <p>This result would surprise many people.</p>`,
         
         14: `<h3>Slide 14: Transition — Social Thesis</h3>
-             <p>These capabilities are powerful. But how do we ensure AI cooperates with humans?</p>`,
+             <p>Bridge from population to social learning.</p>
+             <p>"Evolution optimizes populations — but each agent is evaluated independently. What do we know about coordination and cooperation?"</p>`,
         
-        15: `<h3>Slide 15: Why Social Learning Matters</h3>
-             <p>Core thesis: Agents need social consequences for intrinsic motivation.</p>
-             <p>Not by dictating values, but by structuring their world such that caring is how they survive.</p>`,
+        15: `<h3>Slide 15: The Social Learning Thesis</h3>
+             <p>Key contrast: RLHF creates behavioral dispositions, but the model learns what to say, not what it's like to cause harm.</p>
+             <p>We can't engineer alignment into weights — we engineer environments and selection pressures.</p>
+             <p>Three citations: risks from algorithms (PNAS), risks from interactions (DeepMind), the opportunity (sandbox economies).</p>`,
         
         16: `<h3>Slide 16: Interesting Directions + Closing</h3>
-             <p>Three areas worth exploring: Agentic Evals, Evolutionary Methods, Social Learning.</p>
-             <p>Common thread: moving beyond "train once, deploy forever".</p>`
+             <p>Three areas: Agentic Evals, Evolutionary Methods, Social Learning.</p>
+             <p>Closing insight: Memory lets agents learn from experiences. Evolution lets them learn from each other's attempts. Social structure lets them learn why cooperation matters. We need all three.</p>`
     };
 
     /**
