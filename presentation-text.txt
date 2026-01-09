@@ -266,7 +266,7 @@ Why consequence-driven development matters
 [FIGURE: Two contrasting boxes]
 
 How We Train AI:
-AI systems have no mechanism for intrinsic motivation or value formation. They're exposed to everything at once, then pressured after the fact to suppress undesirable outputs. There are no internalized consequences — only external feedback.
+RLHF creates behavioral dispositions, but not through the developmental process that makes human values robust. The model learns what to say, not what it's like to cause harm.
 
 How Humans Learn Values:
 Children learn from early on that harmful actions lead to concrete, enforced consequences. This shapes intrinsic motivation — not just surface compliance.
