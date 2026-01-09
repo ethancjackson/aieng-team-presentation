@@ -256,8 +256,7 @@ Implication: Evolutionary methods may unlock optimization for agentic systems th
 
 Evolution optimizes populations — but each agent is evaluated independently.
 
-What happens when agents must interact to survive?
-When success depends on coordination, not just individual performance?
+What do we know about coordination, and cooperation in multi-agent systems?
 
 
 === SLIDE 15: THE SOCIAL LEARNING THESIS ===
@@ -274,7 +273,7 @@ Children learn from early on that harmful actions lead to concrete, enforced con
 
 "Alignment cannot be engineered at the 'genomic' level of AI models."
 
-What we can engineer are the environments in which adaptive behaviors emerge — structuring their world such that caring is how they survive.
+What we can engineer are the environments in which adaptive behaviors emerge — structuring their motivations such that alignment is necessary for survival.
 
 The risk is real: Unstructured coordination produces harmful patterns that persist across generations of new agents.
 — Gelpí, Tang, Jackson & Cunningham, PNAS Nexus 2025
@@ -304,7 +303,7 @@ Building AI systems that develop intrinsic motivation through experience with re
 - Consequence-aware training paradigms
 - Multi-agent environments with accountability
 
-These directions share a common thread: moving beyond "train once, deploy forever" toward agents that continue to learn and adapt appropriately.
+Memory lets agents learn from their experiences. Evolution lets them learn from each other's attempts. Social structure lets them learn why cooperation matters. We need all three.
 
 Thank you
 ethan.jackson@vectorinstitute.ai
