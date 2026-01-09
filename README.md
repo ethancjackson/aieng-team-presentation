@@ -1,6 +1,6 @@
-# Memory, Social Intelligence, and the Path to Aligned AI
+# Neuroscience, Evolution, and the Path to Aligned AI
 
-A web-based presentation for the Vector Institute AI Engineering team introducing research directions in agentic AI, episodic memory, evolutionary methods, and social AI.
+A web-based presentation for the Vector Institute AI Engineering team introducing research directions in neuroscience-inspired AI, evolutionary methods, and social learning for aligned agentic AI.
 
 ## Quick Start
 
@@ -147,30 +147,30 @@ Increment the version number to force browsers to reload.
 
 ---
 
-## Current Slide Structure (20 slides)
+## Current Slide Structure (17 slides)
 
 | # | File | Content |
 |---|------|---------|
 | 0 | `00-title.html` | Title slide |
 | 1 | `01-about-me.html` | Career timeline |
-| 2 | `02-thesis.html` | Three Pillars thesis |
+| 2 | `02-thesis.html` | Three Research Themes |
+| | | **Theme 1: Neuroscience-Inspired AI** |
 | 3 | `03-agi-definition.html` | Memory Gap (Hendrycks) |
 | 4 | `04-memory-question.html` | 🔹 Transition |
 | 5 | `05-hippocampus-overview.html` | Hippocampus diagram |
 | 6 | `06-pattern-separation.html` | Pattern Sep/Completion |
-| 7 | `07-hippocampal-dnn.html` | DNN Architecture |
+| 7 | `07-hippocampal-dnn.html` | Complementary Learning |
 | 8 | `08-episodic-memory-rag.html` | Engineering Memory (RAG) |
-| 9 | `09-plasticity-transition.html` | 🔹 Transition |
-| 10 | `10-plasticity-modes.html` | Three Modes of Plasticity |
-| 11 | `11-social-environments.html` | Social AI |
-| 12 | `12-evolution-transition.html` | 🔹 Transition |
-| 13 | `13-darwin-godel.html` | Evolutionary Program Search |
-| 14 | `14-es-vs-rl.html` | ES vs RL comparison |
-| 15 | `15-landscape-smoothing.html` | Game Agents → LLM |
-| 16 | `16-agenda-transition.html` | 🔹 Transition |
-| 17 | `17-applied-agenda.html` | Applied Research Agenda |
-| 18 | `18-translation-impact.html` | Research Translation |
-| 19 | `19-closing.html` | Closing |
+| 9 | `09-distributed-td.html` | Distributed TD Learning |
+| | | **Theme 2: Evolutionary Methods** |
+| 10 | `10-evolution-transition.html` | 🔹 Transition |
+| 11 | `11-darwin-godel.html` | LLM-guided Program Search |
+| 12 | `12-es-vs-rl.html` | ES vs RL comparison |
+| 13 | `13-landscape-smoothing.html` | ES for LLM fine-tuning |
+| | | **Theme 3: Social Learning Thesis** |
+| 14 | `14-social-transition.html` | 🔹 Transition |
+| 15 | `15-social-environments.html` | The Social Learning Thesis |
+| 16 | `16-applied-agenda.html` | Interesting Directions + Closing |
 
 ---
 

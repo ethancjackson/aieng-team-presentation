@@ -8,3 +8,6 @@ wheels/
 
 # Virtual environments
 .venv
+
+# Source materials (PDFs, papers, notes - not for distribution)
+source_material/

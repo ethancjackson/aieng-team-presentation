@@ -10,32 +10,27 @@
         // Intro Section (0-2)
         'slides/00-title.html',
         'slides/01-about-me.html',
-        'slides/02-thesis.html',
+        'slides/02-thesis.html',                    // Three Research Themes
         
-        // Memory Section (3-8)
+        // Theme 1: Neuroscience-Inspired AI (3-9)
         'slides/03-agi-definition.html',
         'slides/04-memory-question.html',           // Transition: "What can neuroscience teach us?"
         'slides/05-hippocampus-overview.html',
         'slides/06-pattern-separation.html',
         'slides/07-hippocampal-dnn.html',
-        'slides/08-episodic-memory-rag.html',       // Was: 09
+        'slides/08-episodic-memory-rag.html',
+        'slides/09-distributed-td.html',            // Distributed TD Learning
         
-        // Plasticity Section (9-11)
-        'slides/09-plasticity-transition.html',     // Transition: "Memory is one mode..." (was: 10)
-        'slides/10-plasticity-modes.html',          // Was: 11
-        'slides/11-social-environments.html',       // Was: 12
+        // Theme 2: Evolutionary Methods (10-13)
+        'slides/10-evolution-transition.html',      // Transition: "Evolution in the LLM era"
+        'slides/11-darwin-godel.html',              // LLM-guided Program Search
+        'slides/12-es-vs-rl.html',                  // ES vs RL
+        'slides/13-landscape-smoothing.html',       // ES for LLM fine-tuning
         
-        // Evolution Section (12-15)
-        'slides/12-evolution-transition.html',      // Transition: "What's the alternative?" (was: 13)
-        'slides/13-darwin-godel.html',              // Was: 14
-        'slides/14-es-vs-rl.html',                  // Was: 15
-        'slides/15-landscape-smoothing.html',       // Was: 16
-        
-        // Applied Agenda Section (16-19)
-        'slides/16-agenda-transition.html',         // Transition: "How do we translate..." (was: 17)
-        'slides/17-applied-agenda.html',            // Was: 18
-        'slides/18-translation-impact.html',        // Was: 19
-        'slides/19-closing.html'                    // Was: 20
+        // Theme 3: Social Learning Thesis (14-16)
+        'slides/14-social-transition.html',         // Transition: "How do we ensure cooperation?"
+        'slides/15-social-environments.html',       // Why Social Learning Matters
+        'slides/16-applied-agenda.html'             // Interesting Directions + Closing
     ];
 
     /**

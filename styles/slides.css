@@ -1141,6 +1141,39 @@
     color: #92400e;
 }
 
+/* Research Context Section */
+.research-context {
+    margin-top: 1rem;
+}
+
+.context-items {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.context-item {
+    font-size: 0.9rem;
+    padding: 0.75rem 1rem;
+    background: var(--bg-subtle);
+    border-radius: 8px;
+    border-left: 3px solid var(--accent);
+    color: var(--text-secondary);
+    line-height: 1.5;
+}
+
+.context-item strong {
+    color: var(--text);
+}
+
+.citation-inline {
+    display: block;
+    font-size: 0.75rem;
+    color: var(--text-tertiary);
+    font-style: italic;
+    margin-top: 0.35rem;
+}
+
 /* ========================================
    DGM Content
    ======================================== */
@@ -2151,6 +2184,89 @@
     font-style: italic;
 }
 
+.contrast-item .citation {
+    font-size: 0.75rem !important;
+    color: #888 !important;
+    font-style: italic;
+    margin-top: 0.75rem !important;
+    margin-bottom: 0 !important;
+    padding: 0 !important;
+    background: none !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+/* Social Learning Slide (Slide 11 - updated) */
+.social-argument {
+    margin: 1rem 0;
+}
+
+.contrast-box {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+}
+
+.contrast-item {
+    background: var(--bg-subtle);
+    border-radius: 10px;
+    padding: 1.25rem;
+    border: 1px solid var(--border);
+}
+
+.contrast-item.problem {
+    border-left: 4px solid #ef4444;
+    background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
+}
+
+.contrast-item.solution {
+    border-left: 4px solid #10b981;
+    background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+}
+
+.contrast-item h4 {
+    font-size: 0.95rem;
+    margin-bottom: 0.5rem;
+    color: var(--text);
+}
+
+.contrast-item p {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    margin: 0;
+}
+
+.key-quote {
+    margin: 1.25rem 0;
+}
+
+.key-quote blockquote {
+    font-size: 1.1rem;
+    font-style: italic;
+    line-height: 1.6;
+    padding: 1.25rem 1.5rem;
+    background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+    border-left: 4px solid #3b82f6;
+    border-radius: 0 10px 10px 0;
+    margin: 0;
+    color: var(--text);
+}
+
+.key-quote blockquote strong {
+    color: #1e40af;
+}
+
+.key-quote blockquote em {
+    color: #1e40af;
+    font-weight: 500;
+}
+
+/* Two-mode plasticity layout */
+.plasticity-modes.two-modes {
+    grid-template-columns: 1fr 1fr;
+}
+
 /* ========================================
    Applied Research Agenda (Slide 15)
    ======================================== */
@@ -2233,11 +2349,37 @@
     border: 1px solid #0ea5e9;
     border-radius: 8px;
     padding: 1rem 1.5rem;
-}
-
-.agenda-insight p {
     font-size: 0.9rem;
     margin: 0;
+}
+
+.agenda-closing {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.25rem;
+    margin-top: 1rem;
+}
+
+.agenda-closing .agenda-insight {
+    max-width: 700px;
+    text-align: center;
+}
+
+.agenda-closing .closing-info {
+    text-align: center;
+}
+
+.agenda-closing .thank-you {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+}
+
+.agenda-closing .contact {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.9rem;
+    color: var(--accent);
 }
 
 /* ========================================
@@ -2364,6 +2506,47 @@
     font-size: 1.3rem;
     font-weight: 500;
     color: var(--accent);
+}
+
+/* Closing Summary (Slide 18) */
+.closing-summary {
+    max-width: 800px;
+    margin-bottom: 1.5rem;
+}
+
+.summary-line {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    color: var(--text-secondary);
+}
+
+.summary-items {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.summary-item {
+    font-size: 1.15rem;
+    padding: 0.75rem 1.25rem;
+    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+    border-radius: 8px;
+    border: 1px solid var(--border);
+}
+
+.summary-item strong {
+    color: var(--accent);
+}
+
+.closing-note {
+    max-width: 700px;
+    margin-bottom: 2rem;
+}
+
+.closing-note p {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    font-style: italic;
 }
 
 /* ========================================

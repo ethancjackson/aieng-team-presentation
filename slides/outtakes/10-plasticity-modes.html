@@ -1,0 +1,49 @@
+<section class="slide" id="slide-10">
+    <div class="slide-content">
+        <h2 class="section-label">Two Modes of Agent Plasticity</h2>
+        <p class="slide-subtitle fade-in">How agents consolidate learning and adapt their behavior</p>
+        
+        <div class="plasticity-modes two-modes fade-in" style="--delay: 0.3">
+            <div class="mode-card weights">
+                <div class="mode-header">
+                    <span class="mode-icon">🧬</span>
+                    <h3>Weight Consolidation</h3>
+                    <span class="mode-speed slow">SLOW</span>
+                </div>
+                <div class="mode-content">
+                    <p><strong>Consolidating experience into model weights</strong></p>
+                    <ul>
+                        <li>Fine-tuning / RLHF</li>
+                        <li>Evolution Strategies (ES)</li>
+                        <li>LoRA / adapter tuning</li>
+                    </ul>
+                    <p class="mode-example">Durable changes, expensive, offline</p>
+                </div>
+            </div>
+            
+            <div class="mode-card memory">
+                <div class="mode-header">
+                    <span class="mode-icon">💾</span>
+                    <h3>External Memory</h3>
+                    <span class="mode-speed fast">FAST</span>
+                </div>
+                <div class="mode-content">
+                    <p><strong>In-context learning via retrieved experience</strong></p>
+                    <ul>
+                        <li>RAG-based episodic memory</li>
+                        <li>Experience accumulation</li>
+                        <li>Pattern completion at inference</li>
+                        <li>Tool and knowledge retrieval</li>
+                    </ul>
+                    <p class="mode-example">Flexible, cheap, online</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="plasticity-insight fade-in" style="--delay: 0.8">
+            <p>We've seen how <strong>external memory</strong> enables fast adaptation via RAG. 
+            For <strong>weight consolidation</strong>, gradient-based methods like RLHF are common — 
+            but <em>evolutionary approaches</em> offer compelling alternatives.</p>
+        </div>
+    </div>
+</section>

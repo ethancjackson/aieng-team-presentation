@@ -7,7 +7,7 @@
     'use strict';
 
     // Configuration
-    const TOTAL_SLIDES = 20;
+    const TOTAL_SLIDES = 17;
     let currentSlide = 0;
     let speakerNotesVisible = false;
 
@@ -27,15 +27,15 @@
             <p>Quick journey through my career.</p>
             <p>Notice the recurring themes: evolutionary methods, memory systems, social AI.</p>`,
         
-        2: `<h3>Slide 2: Three Pillars</h3>
-            <p>This is the core argument: Memory + Plasticity + Social Environments.</p>
-            <p>The current paradigm won't scale to aligned agentic AI.</p>`,
+        2: `<h3>Slide 2: Three Research Themes</h3>
+            <p>Overview: Neuroscience-inspired AI, Evolutionary Methods, Social Learning Thesis.</p>
+            <p>From understanding how minds learn, to how they might learn to cooperate.</p>`,
         
         3: `<h3>Slide 3: The Memory Gap</h3>
             <p>Hendrycks et al. AGI framework shows memory as the primary deficit.</p>`,
         
-        4: `<h3>Slide 4: Transition</h3>
-            <p>[Pause] What can neuroscience teach us about memory systems?</p>`,
+        4: `<h3>Slide 4: Transition — Neuroscience</h3>
+            <p>[Pause] What can neuroscience teach us about memory and learning?</p>`,
         
         5: `<h3>Slide 5: Hippocampus</h3>
             <p>The hippocampus balances pattern separation with pattern completion.</p>`,
@@ -49,42 +49,35 @@
         8: `<h3>Slide 8: Engineering Memory for Agents</h3>
             <p>RAG-based architectures offer practical engineering solutions.</p>`,
         
-        9: `<h3>Slide 9: Transition — Plasticity</h3>
-            <p>Memory is one mode of plasticity. What other pathways exist?</p>`,
+        9: `<h3>Slide 9: Distributed TD Learning</h3>
+             <p>Neuroscience-inspired learning: each layer learns independently.</p>
+             <p>Local TD errors like dopamine signals. No backprop between layers.</p>`,
         
-        10: `<h3>Slide 10: Three Modes of Plasticity</h3>
-             <p>Weights (slow), Adapters (medium), External Memory (fast).</p>
-             <p>RL isn't the only option — ES provides alternatives.</p>`,
+        10: `<h3>Slide 10: Transition — Evolution</h3>
+             <p>Evolutionary methods are making a surprising comeback in the LLM era.</p>`,
         
-        11: `<h3>Slide 11: Social Environments</h3>
-             <p>Social AI is emerging. Agents that learn from experience introduce privacy concerns.</p>
-             <p>The current paradigm can't produce appropriate values through social experience.</p>`,
+        11: `<h3>Slide 11: LLM-guided Program Search</h3>
+             <p>DGM and ProFiT show evolution works for code/agent search.</p>
+             <p>Policies aren't just prompts — they can be programs.</p>`,
         
-        12: `<h3>Slide 12: Transition — Alternative Approaches</h3>
-             <p>If RLHF won't scale, what's the alternative?</p>`,
-        
-        13: `<h3>Slide 13: Evolutionary Program Search</h3>
-             <p>DGM and ProFiT show evolution works for code/agent search.</p>`,
-        
-        14: `<h3>Slide 14: ES vs RL</h3>
+        12: `<h3>Slide 12: ES vs RL</h3>
              <p>ES explores parameter space, RL explores action space.</p>
              <p>ES has 15x lower variance and scales to 7B params with N=30.</p>`,
         
-        15: `<h3>Slide 15: From Game Agents to LLM Fine-Tuning</h3>
-             <p>Evolutionary principles scale from millions to billions of parameters.</p>`,
+        13: `<h3>Slide 13: ES for LLM Fine-Tuning</h3>
+             <p>Evolutionary principles scale from millions to billions of parameters.</p>
+             <p>This result would surprise many people.</p>`,
         
-        16: `<h3>Slide 16: Transition — Applied Research</h3>
-             <p>How do we translate this into applied research at Vector?</p>`,
+        14: `<h3>Slide 14: Transition — Social Thesis</h3>
+             <p>These capabilities are powerful. But how do we ensure AI cooperates with humans?</p>`,
         
-        17: `<h3>Slide 17: Applied Research Agenda</h3>
-             <p>Three directions: Agentic Evals, Multi-Modal Plasticity, Social AI.</p>`,
+        15: `<h3>Slide 15: Why Social Learning Matters</h3>
+             <p>Core thesis: Agents need social consequences for intrinsic motivation.</p>
+             <p>Not by dictating values, but by structuring their world such that caring is how they survive.</p>`,
         
-        18: `<h3>Slide 18: Research Translation Impact</h3>
-             <p>EpBench, DGM, Virtual Agent Economies → real applications.</p>`,
-        
-        19: `<h3>Slide 19: Closing</h3>
-             <p>The current paradigm won't scale. We need memory, plasticity, social environments.</p>
-             <p>This is the research I'm here to do.</p>`
+        16: `<h3>Slide 16: Interesting Directions + Closing</h3>
+             <p>Three areas worth exploring: Agentic Evals, Evolutionary Methods, Social Learning.</p>
+             <p>Common thread: moving beyond "train once, deploy forever".</p>`
     };
 
     /**
